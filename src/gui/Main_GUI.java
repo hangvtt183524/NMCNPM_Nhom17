@@ -22,13 +22,15 @@ public class Main_GUI extends Application{
 	private GridPane function;
 	
 	
-	private Button person;
-	private Button health;
-	private Button movement;
-	private Button isolation;
-	private Button test;
-	private Button view;
-	private Button logout;
+	private Label person;
+	private Label health;
+	private Label movement;
+	private Label isolation;
+	private Label test;
+	private Label view;
+	private Label logout;
+	
+	private PersonForm personForm;
 	
 	public static void main(String[] args)
 	{
@@ -74,8 +76,7 @@ public class Main_GUI extends Application{
 	private void setNavigatePane()
 	{
         this.navigate = new GridPane();
-        
-        this.navigate.setGridLinesVisible(true);
+        this.navigate.setStyle("-fx-background-color: #26ad48;");
         
         for (int i=0; i< 10; i++) {
         	RowConstraints rowConst = new RowConstraints();
@@ -87,19 +88,19 @@ public class Main_GUI extends Application{
         colConst.setPercentWidth(100.0);
         this.navigate.getColumnConstraints().add(colConst);
         
-        this.person = new Button("Person");
-        this.health = new Button("Health");
-        this.isolation = new Button("Isolation");
-        this.movement = new Button("Movement");
-        this.test = new Button("Test");
-        this.view = new Button("View");
+        this.person = new Label("Person");
+        this.health = new Label("Health");
+        this.isolation = new Label("Isolation");
+        this.movement = new Label("Movement");
+        this.test = new Label("Test");
+        this.view = new Label("View");
         
-        this.navigate.add(setButton(this.person), 0, 1, 1, 1);
-        this.navigate.add(setButton(this.movement), 0, 2, 1, 1);
-        this.navigate.add(setButton(this.health), 0, 3, 1, 1);
-        this.navigate.add(setButton(this.isolation), 0, 4, 1, 1);
-        this.navigate.add(setButton(this.test), 0, 5, 1, 1);
-        this.navigate.add(setButton(this.view), 0, 6, 1, 1);
+        this.navigate.add(setLabel(this.person), 0, 1, 1, 1);
+        this.navigate.add(setLabel(this.movement), 0, 2, 1, 1);
+        this.navigate.add(setLabel(this.health), 0, 3, 1, 1);
+        this.navigate.add(setLabel(this.isolation), 0, 4, 1, 1);
+        this.navigate.add(setLabel(this.test), 0, 5, 1, 1);
+        this.navigate.add(setLabel(this.view), 0, 6, 1, 1);
         //this.navigate.add(child, columnIndex, rowIndex);
         
 	}
@@ -108,21 +109,31 @@ public class Main_GUI extends Application{
 	private void setFunctionPane()
 	{
 		this.function = new GridPane();
-		//this.function.setStyle("-fx-background-color: violet;");
+		
+        RowConstraints rowFunction = new RowConstraints();
+        rowFunction.setPercentHeight(100.0);
+        this.function.getRowConstraints().add(rowFunction);
+        
+        ColumnConstraints colFunction = new ColumnConstraints();
+        colFunction.setPercentWidth(100.0);
+        this.function.getColumnConstraints().add(colFunction);
+        
+        this.personForm = new PersonForm();
+        this.function.add(this.personForm, 0, 0, 1, 1);
 	}
 	
-	private Button setButton(Button button)
+	private Label setLabel(Label label)
 	{
-		button.setFont(new Font("Aria", 25));
-		button.setStyle("-fx-background-color: #3f4d71;"
+		label.setFont(new Font("Aria", 25));
+		label.setStyle("-fx-background-color: #26ad48;"
 				+ "-fx-text-fill: white;"
 				+ "-fx-font-weight: bold;");
-		button.setAlignment(Pos.CENTER);
+		label.setAlignment(Pos.CENTER);
 
-		button.setMaxSize(390.0, 150.0);
-		button.setPrefSize(100.0, 75.0);
+		label.setMaxSize(390.0, 150.0);
+		label.setPrefSize(100.0, 75.0);
 		
-		return button;
+		return label;
 	}
 
 }

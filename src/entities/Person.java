@@ -1,4 +1,4 @@
-package gui;
+package entities;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +11,7 @@ public class Person extends Human {
 	private Date ngay_sinh;
 	private String dia_chi;
 	
-	private ArrayList<PersonForm> PersonFormList;
+	//private ArrayList<PersonForm> PersonFormList;
 	
 	public int getId_nhan_khau() {
 		return id_nhan_khau;
@@ -73,7 +73,7 @@ public class Person extends Human {
 
 
 
-	public ArrayList<PersonForm> getPersonFormList() {
+	/*public ArrayList<PersonForm> getPersonFormList() {
 		return PersonFormList;
 	}
 
@@ -81,7 +81,7 @@ public class Person extends Human {
 
 	public void setPersonFormList(ArrayList<PersonForm> personFormList) {
 		PersonFormList = personFormList;
-	}
+	}*/
 
 
 

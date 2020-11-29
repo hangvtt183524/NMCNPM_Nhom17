@@ -1,6 +1,8 @@
 package gui;
 
 import java.sql.ResultSet;
+
+import entities.Human;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -13,6 +15,11 @@ public class FormFunction extends GridPane {
 	protected Button addBtn;
 	protected Button changeBtn;
 	protected TableView<Human> ResultSet;
+	
+	public FormFunction() 
+	{
+		super();
+	}
 	
 	public void save_event(String query) {
 		

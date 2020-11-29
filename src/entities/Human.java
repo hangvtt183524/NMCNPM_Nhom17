@@ -1,4 +1,4 @@
-package gui;
+package entities;
 
 public class Human {
 	private String ten;
