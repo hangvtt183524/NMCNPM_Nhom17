@@ -44,10 +44,11 @@ public class Main_GUI extends Application{
 		setFunctionPane();
 		setRootPane();
 		
-		Scene scene = new Scene(root, 750, 550);
+		Scene scene = new Scene(root, 1500, 850);
 		 
-        primaryStage.setTitle("FlowPane Layout Demo");
+        primaryStage.setTitle("Covid-19");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         primaryStage.show();
 		
 	}
