@@ -6,10 +6,18 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="D:/Code/NMCNPM_Nhom17/libs/commons-lang3-3.8.1.jar"/>
-	<classpathentry kind="lib" path="D:/Code/NMCNPM_Nhom17/libs/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="D:/Code/NMCNPM_Nhom17/libs/hsqldb-2.5.0.jar"/>
-	<classpathentry kind="lib" path="D:/Code/NMCNPM_Nhom17/libs/jackcess-3.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/Code/NMCNPM_Nhom17/libs/ucanaccess-5.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/trand/Desktop/GitHub/NMCNPM_Nhom17/libs/commons-lang3-3.8.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/trand/Desktop/GitHub/NMCNPM_Nhom17/libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/trand/Desktop/GitHub/NMCNPM_Nhom17/libs/hsqldb-2.5.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/trand/Desktop/GitHub/NMCNPM_Nhom17/libs/jackcess-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/trand/Desktop/GitHub/NMCNPM_Nhom17/libs/ucanaccess-5.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
