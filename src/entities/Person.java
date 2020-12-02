@@ -3,7 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Person extends Human {
+public class Person {
 	
 	private int id_nhan_khau;
 	private int id_ho_khau;
@@ -87,7 +87,6 @@ public class Person extends Human {
 
 	public Person(String ten, String socmnd, String ltrinh) {
 		// TODO Auto-generated constructor stub
-		super(ten, socmnd, ltrinh);
 	}
 	
 	
