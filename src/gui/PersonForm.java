@@ -45,11 +45,11 @@ public class PersonForm extends FormFunction{
 		ColumnConstraints column4 = new ColumnConstraints();
 		ColumnConstraints column5 = new ColumnConstraints();
 		
-		column1.setPercentWidth(50);
-		column2.setPercentWidth(50);
-		column3.setPercentWidth(50);
-		column4.setPercentWidth(50);
-		column5.setPercentWidth(50);
+		column1.setPercentWidth(15);
+		column2.setPercentWidth(35);
+		column3.setPercentWidth(28);
+		column4.setPercentWidth(10);
+		column5.setPercentWidth(12);
 		
 		this.getColumnConstraints().addAll(column1, column2, column3, column4);
 		
