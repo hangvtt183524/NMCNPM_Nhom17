@@ -58,10 +58,10 @@ public class PersonForm extends FormFunction{
         	rowConst.setPercentHeight(100/18);
         	this.getRowConstraints().add(rowConst);
         }
-		
 		this.setHgap(5);
 		this.setVgap(10);
-		
+		this.setGridLinesVisible(true);
+
 		this.add(setLabel(this.tenChuHo, "Ten chu ho"), 0, 1, 1, 1);
 		this.add(setLabel(this.soThanhVien, "So thanh vien trong gia dinh"), 2, 1, 1, 1);
 		this.add(setLabel(this.diachi,"Dia chi"), 0, 2, 1, 1);
