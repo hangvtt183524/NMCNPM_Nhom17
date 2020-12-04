@@ -88,8 +88,6 @@ public class Person {
 	public Person(String ten, String socmnd, String ltrinh) {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 		
 }
 	
