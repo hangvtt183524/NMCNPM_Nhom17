@@ -14,6 +14,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.util.List;
 
 import javafx.scene.control.*;
@@ -69,24 +70,15 @@ public class IsolationForm extends FormFunction{
 		this.setVgap(10);
 		this.setGridLinesVisible(true);
 
-<<<<<<< HEAD
-/*
-		this.searchLb = new Label("Nháº­p thÃ´ng tin tÃ¬m kiáº¿m");
-=======
 
 		this.searchLb = new Label("Nhap thong tin tim kiem:");
->>>>>>> cc53e2350b51a3ec1c464f64cf98273d6ec50148
 		this.searchLb.setFont(new Font("Aria", 23));
 		this.searchLb.setAlignment(Pos.CENTER_LEFT);
 		this.searchLb.setMaxSize(390.0, 150.0);
 		this.searchLb.setPrefSize(100.0, 75.0);
 		this.add(this.searchLb, 0, 1, 1, 1);
 		
-<<<<<<< HEAD
-		this.choiceLb = new Label("TÃ¬m kiáº¿m theo");
-=======
 		this.choiceLb = new Label("Tim kiem theo: ");
->>>>>>> cc53e2350b51a3ec1c464f64cf98273d6ec50148
 		this.choiceLb.setFont(new Font("Aria", 23));
 		this.choiceLb.setAlignment(Pos.CENTER_RIGHT);
 		this.choiceLb.setMaxSize(390.0, 150.0);
@@ -96,43 +88,17 @@ public class IsolationForm extends FormFunction{
 		this.searchBtn = new Button("Search");
 		this.add(this.searchBtn, 4, 1, 1, 1);
 		
-		this.searchTxt = new TextField();
-		this.searchTxt.setMaxSize(250, 1);
-		this.add(this.searchTxt, 1, 1, 1, 1);
+		this.searchText = new TextField();
+		this.searchText.setMaxSize(250, 1);
+		this.add(this.searchText, 1, 1, 1, 1);
 		
-		this.table = new TableView<Person>();
-<<<<<<< HEAD
-		TableColumn<Person, Integer> idHoKhauCl = new TableColumn<Person, Integer>("ID há»™ kháº©u");
-		TableColumn<Person, Integer> idNhanKhauCl = new TableColumn<Person, Integer>("ID nhÃ¢n kháº©u");
-		TableColumn<Person, String> hoTenCl = new TableColumn<Person, String>("Há»� vÃ  tÃªn");
-		TableColumn<Person, String> cccdCl = new TableColumn<Person, String>("Sá»‘ CCCD");
-=======
-		TableColumn<Person, Integer> idHoKhauCl = new TableColumn<Person, Integer>("id_ho_khau");
-		TableColumn<Person, Integer> idNhanKhauCl = new TableColumn<Person, Integer>("id_nhan_khau");
-		TableColumn<Person, String> hoTenCl = new TableColumn<Person, String>("ho_va_ten");
-		TableColumn<Person, String> cccdCl = new TableColumn<Person, String>("cccd");
->>>>>>> cc53e2350b51a3ec1c464f64cf98273d6ec50148
-		
-		idHoKhauCl.setPrefWidth(250);
-		idNhanKhauCl.setPrefWidth(250);
-		hoTenCl.setPrefWidth(400);
-		cccdCl.setPrefWidth(300);
-		
-		this.table.getColumns().addAll(idHoKhauCl, idNhanKhauCl, hoTenCl, cccdCl);
-		this.add(this.table, 0, 3, 5, 16);
-		
-<<<<<<< HEAD
-		ObservableList<String> choices = FXCollections.observableArrayList("ID há»™ kháº©u", "ID nhÃ¢n kháº©u", "TÃªn", "Sá»‘ CCCD");
-	    ChoiceBox<String> choiceBox = new ChoiceBox<>(choices);
-		this.add(choiceBox, 3, 1, 1, 1);*/
-}
-=======
 		ObservableList<String> choices = FXCollections.observableArrayList("id_ho_khau", "id_nhan_khau", "ho_va_ten", "cccd");
 	    ChoiceBox<String> choiceBox = new ChoiceBox<>(choices);
 		this.add(choiceBox, 3, 1, 1, 1);
-		public ResultSet search_event(String query) {
+	}
+		
+	public ResultSet search_event(String query) {
 		return null;
 		
 	}
->>>>>>> cc53e2350b51a3ec1c464f64cf98273d6ec50148
 }
