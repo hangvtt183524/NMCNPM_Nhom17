@@ -1,7 +1,9 @@
 package entities;
 
 import java.sql.Date;
-import java.sql;
+
+import javafx.scene.control.CheckBox;
+
 
 public class Isolation {
 	private int id_nhan_khau;
@@ -21,7 +23,7 @@ public class Isolation {
 	{
 		this.id_nhan_khau = id;
 		this.muc_do_cach_ly = muc_do;
-		this.da_tiep_xuc = tiep_xuc
+		this.da_tiep_xuc = tiep_xuc;
 		this.da_kiem_tra = kt;
 		this.dia_diem_cach_ly = diadiem;
 		this.ngay_bat_dau = thoigian;
@@ -68,7 +70,7 @@ public class Isolation {
 	}
 
 	public CheckBox getda_kiem_tra(){
-		return getda_kiem_tra;
+		return this.da_kiem_tra;
 	}
 
 	public void setda_kiem_tra(CheckBox da_kiem_tra){
