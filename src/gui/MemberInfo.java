@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 
-public class MemberInfo extends GridPane{
+public class MemberInfo extends GridPane implements Info{
 	
 	private Label stt;
 	private Label name;
@@ -27,7 +27,8 @@ public class MemberInfo extends GridPane{
 	private List<TextField> name_mem;
 	private List<DatePicker> dateOfBirth_mem;
 	private List<TextField> cert_mem;
-	private List<ToggleGroup> gender_mem;
+	private List<RadioButton> gender_male_mem;
+	private List<RadioButton> gender_female_mem;
 	
 	private int number;
 	
@@ -40,8 +41,8 @@ public class MemberInfo extends GridPane{
 		this.stt_mem = new ArrayList<Label>(numberOfMember);
 		this.name_mem = new ArrayList<TextField>(numberOfMember);
 		this.dateOfBirth_mem = new ArrayList<DatePicker>(numberOfMember);
-		this.cert_mem = new ArrayList<TextField>(numberOfMember);
-		this.gender_mem = new ArrayList<ToggleGroup>(numberOfMember);
+		this.gender_male_mem = new ArrayList<RadioButton>(numberOfMember);
+		this.gender_female_mem = new ArrayList<RadioButton>(numberOfMember);
 		
 		setMemberInfoPane();
 	}
@@ -80,7 +81,7 @@ public class MemberInfo extends GridPane{
 		this.add(setLabel(this.name, "Name"), 1, 0, 1, 1);
 		this.add(setLabel(this.dateOfBirth, "Date of birth"), 2, 0, 1, 1);
 		this.add(setLabel(this.cert, "Cert"), 3, 0, 1, 1);
-		this.add(setLabel(this.gender, "Gender"), 4, 0, 1, 1);
+		this.add(setLabel(this.gender, "Gender"), 4, 0, 2, 1);
 		
 		setSttLabel();
 		setNameTextField();
@@ -89,7 +90,8 @@ public class MemberInfo extends GridPane{
 		setGenderToggle();
 	}
 	
-	private Label setLabel(Label label, String s)
+	@Override
+	public Label setLabel(Label label, String s)
 	{
 		label = new Label(s);
 		
@@ -171,7 +173,7 @@ public class MemberInfo extends GridPane{
 	private void setGenderToggle()
 	{
 		int pos = 1;
-		this.gender_mem = new ArrayList<ToggleGroup>(this.number);
+		this.gender_male_mem = new ArrayList<RadioButton>(this.number);
 		
 		for (int i=0; i< this.number; i++) {
 			ToggleGroup group = new ToggleGroup();
@@ -182,13 +184,13 @@ public class MemberInfo extends GridPane{
 	        RadioButton button2 = new RadioButton("Female");
 	        button2.setToggleGroup(group);
 	        
-	        this.gender_mem.add(group);
+	        this.gender_male_mem.add(button1);
+	        this.gender_female_mem.add(button2);
 	        
 	        this.add(button1, 4, pos, 1, 1);
 	        this.add(button2, 5, pos, 1, 1);
 	        pos++;
 		}
-		
 	}
 }
 

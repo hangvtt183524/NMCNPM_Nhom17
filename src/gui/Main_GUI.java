@@ -123,11 +123,11 @@ public class Main_GUI extends Application{
         colFunction.setPercentWidth(100.0);
         this.function.getColumnConstraints().add(colFunction);
         
-        //this.personForm = new PersonForm();
-        //this.function.add(this.personForm, 0, 0, 1, 1);
+        this.personForm = new PersonForm();
+        this.function.add(this.personForm, 0, 0, 1, 1);
         
-        this.movementForm = new MovementForm();
-        this.function.add(this.movementForm, 0, 0, 1, 1);
+        //this.movementForm = new MovementForm();
+        //this.function.add(this.movementForm, 0, 0, 1, 1);
 	}
 	
 	private Label setLabel(Label label)
