@@ -1,10 +1,12 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
@@ -31,6 +33,8 @@ public class Main_GUI extends Application{
 	private Label logout;
 	
 	private PersonForm personForm;
+	private MovementForm movementForm;
+	private HealthForm healthForm;
 	
 	public static void main(String[] args)
 	{
@@ -121,6 +125,9 @@ public class Main_GUI extends Application{
         
         this.personForm = new PersonForm();
         this.function.add(this.personForm, 0, 0, 1, 1);
+        
+        //this.movementForm = new MovementForm();
+        //this.function.add(this.movementForm, 0, 0, 1, 1);
 	}
 	
 	private Label setLabel(Label label)
@@ -134,7 +141,31 @@ public class Main_GUI extends Application{
 		label.setMaxSize(390.0, 150.0);
 		label.setPrefSize(100.0, 75.0);
 		
+		handleHoverLabel(label);
+		
 		return label;
 	}
-
+	
+	private void handleHoverLabel(Label label) 
+	{
+		EventHandler<MouseEvent> eventHandler1 = new EventHandler<MouseEvent>() { 
+			   @Override 
+			   public void handle(MouseEvent e) { 
+				   label.setStyle("-fx-background-color: #66e889;"
+				   		+ "-fx-text-fill: white;"
+				   		+ "-fx-font-weight: bold;");
+			   } 
+			};
+		label.addEventFilter(MouseEvent.MOUSE_ENTERED, eventHandler1);
+		
+		EventHandler<MouseEvent> eventHandler2 = new EventHandler<MouseEvent>() { 
+			   @Override 
+			   public void handle(MouseEvent e) { 
+				   label.setStyle("-fx-background-color: #26ad48;"
+				   		+ "-fx-text-fill: white;"
+				   		+ "-fx-font-weight: bold;");
+			   } 
+			};
+		label.addEventFilter(MouseEvent.MOUSE_EXITED, eventHandler2);
+	}
 }
