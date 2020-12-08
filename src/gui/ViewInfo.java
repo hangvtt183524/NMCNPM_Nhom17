@@ -1,7 +1,11 @@
 package gui;
 
+import java.util.List;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;
@@ -15,9 +19,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 
 public class ViewInfo{
-	private Option searchOption;
+	private ChoiceBox searchOption;
 	private Button searchBtn;
-	private list<checkBox> deletelist;
+	private List<CheckBox> deletelist;
 	private Button deleteBtn;
 	
 }
