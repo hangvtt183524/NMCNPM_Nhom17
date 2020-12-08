@@ -3,12 +3,17 @@ package gui;
 import java.sql.ResultSet;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 public class FormFunction extends GridPane {
-	protected TextArea searchText;
+	protected Label searchLb;
+	protected Label choiceLb;
+	
+	protected TextField searchText;
 	protected Button saveBtn;
 	protected Button searchBtn;
 	protected Button addBtn;

@@ -14,6 +14,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
 import java.sql.Date;
+import java.sql.ResultSet;
 import java.util.List;
 
 import javafx.scene.control.*;
@@ -87,28 +88,16 @@ public class IsolationForm extends FormFunction{
 		this.searchBtn = new Button("Search");
 		this.add(this.searchBtn, 4, 1, 1, 1);
 		
-		this.searchTxt = new TextField();
-		this.searchTxt.setMaxSize(250, 1);
-		this.add(this.searchTxt, 1, 1, 1, 1);
-		
-		this.table = new TableView<Person>();
-		TableColumn<Person, Integer> idHoKhauCl = new TableColumn<Person, Integer>("id_ho_khau");
-		TableColumn<Person, Integer> idNhanKhauCl = new TableColumn<Person, Integer>("id_nhan_khau");
-		TableColumn<Person, String> hoTenCl = new TableColumn<Person, String>("ho_va_ten");
-		TableColumn<Person, String> cccdCl = new TableColumn<Person, String>("cccd");
-		
-		idHoKhauCl.setPrefWidth(250);
-		idNhanKhauCl.setPrefWidth(250);
-		hoTenCl.setPrefWidth(400);
-		cccdCl.setPrefWidth(300);
-		
-		this.table.getColumns().addAll(idHoKhauCl, idNhanKhauCl, hoTenCl, cccdCl);
-		this.add(this.table, 0, 3, 5, 16);
+		this.searchText = new TextField();
+		this.searchText.setMaxSize(250, 1);
+		this.add(this.searchText, 1, 1, 1, 1);
 		
 		ObservableList<String> choices = FXCollections.observableArrayList("id_ho_khau", "id_nhan_khau", "ho_va_ten", "cccd");
 	    ChoiceBox<String> choiceBox = new ChoiceBox<>(choices);
 		this.add(choiceBox, 3, 1, 1, 1);
-		public ResultSet search_event(String query) {
+	}
+		
+	public ResultSet search_event(String query) {
 		return null;
 		
 	}
