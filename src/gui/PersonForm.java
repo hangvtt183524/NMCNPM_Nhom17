@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TitledPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -23,18 +24,8 @@ public class PersonForm extends FormFunction{
 	private TextField tenChuHo_text;
 	private Spinner soThanhVien_spinner;
 	private TextField diachi_text;
-
-	private Label stt;
-	private Label tenThanhVien;
-	private Label cccd;
-	private Label ngaySinh;
-	private Label gioiTinh;
-
-	private VBox stt_pane;
-	private VBox ten_pane;
-	private VBox cccd_pane;
-	private VBox ngaySinh_pane;
-	private VBox gioiTinh_pane;
+	
+	private MemberInfo memberInfoPane;
 	
 	
 	public PersonForm()
@@ -55,6 +46,7 @@ public class PersonForm extends FormFunction{
 		this.setStyle("-fx-background-color: #c09ae6;"
 				+ "-fx-padding: 20 20 20 20;");
 		
+		
 		ColumnConstraints column1 = new ColumnConstraints();
 		ColumnConstraints column2 = new ColumnConstraints();
 		ColumnConstraints column3 = new ColumnConstraints();
@@ -66,6 +58,7 @@ public class PersonForm extends FormFunction{
 		column4.setPercentWidth(15);
 		column5.setPercentWidth(10);
 		
+		
 		this.getColumnConstraints().addAll(column1, column2, column3, column4, column5);
 		
 		for (int i=0; i< 18; i++) {
@@ -73,22 +66,25 @@ public class PersonForm extends FormFunction{
         	rowConst.setPercentHeight(100/18);
         	this.getRowConstraints().add(rowConst);
         }
-	
+		
 		this.setHgap(5);
 		this.setVgap(10);
-		this.setGridLinesVisible(true);
-
+		//this.setGridLinesVisible(true);
+		
 		this.add(setLabel(this.tenChuHo, "Ten chu ho"), 0, 1, 1, 1);
 		this.add(setLabel(this.soThanhVien, "So thanh vien trong gia dinh"), 2, 1, 1, 1);
-		this.add(setLabel(this.diachi,"Dia chi"), 0, 2, 1, 1);
+		this.add(setLabel(this.diachi, "Dia chi"), 0, 2, 1, 1);
 		
 		this.tenChuHo_text = new TextField();
+		//this.tenChuHo_text.setPrefColumnCount(1);
 		this.tenChuHo_text.setMaxSize(300, 1);
+		//this.tenChuHo_text.setFont(new Font("Arial", 17));
 		this.add(this.tenChuHo_text, 1, 1, 1, 1);
 		
 		this.diachi_text = new TextField();
-		this.diachi_text.setMaxSize(400,1);
+		this.diachi_text.setMaxSize(400, 1);
 		this.add(this.diachi_text, 1, 2, 1, 1);
+		
 		
 		this.soThanhVien_spinner = new Spinner(1, 10, 1);
 		this.soThanhVien_spinner.setEditable(true);
@@ -96,17 +92,13 @@ public class PersonForm extends FormFunction{
 		this.soThanhVien_spinner.setMaxSize(100, 4);
 		this.add(this.soThanhVien_spinner, 3, 1, 1, 1);
 		
-		this.addBtn = new Button ("Add");
-		this.addBtn.setPrefSize(70,5);
-		this.addBtn.setMaxSize(70,5);
+		this.addBtn = new Button("Add");
+		this.addBtn.setPrefSize(70, 5);
+		this.addBtn.setMaxSize(70, 5);
 		this.add(this.addBtn, 2, 2, 1, 1);
 		
-		this.stt_pane = new VBox();
-		this.add(khaiBaoThanhVien(this.stt_pane, this.stt, "STT"), 0, 4, 1, 4);
-		
-		this.ten_pane = new VBox();
-		this.add(khaiBaoThanhVien(this.ten_pane, this.stt, "Ten Thanh Vien"), 1, 4, 1, 4);
-		
+		this.memberInfoPane = new MemberInfo(5);
+		this.add(this.memberInfoPane, 0, 6, 5, 8);
 	}
 	
 	private Label setLabel(Label label, String s) 
@@ -121,14 +113,4 @@ public class PersonForm extends FormFunction{
 		return label;
 	}
 	
-	private VBox khaiBaoThanhVien(VBox pane, Label title, String s) {
-		pane.setStyle("-fx-background-color: red;"
-						+ "-fx-border-width: 1px;");
-		pane.setSpacing(5);
-		pane.getChildren().add(setLabel(title,s));
-		for(int i=0; i<3; i++) {
-			pane.getChildren().add(new TextField());
-		}
-		return pane;
-	}
 }

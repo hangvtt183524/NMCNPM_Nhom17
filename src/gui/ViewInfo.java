@@ -24,4 +24,11 @@ public class ViewInfo{
 	private List<CheckBox> deletelist;
 	private Button deleteBtn;
 	
+	public search_event(String query){
+		return null;
+	}
+
+	public delete_event(String query){
+		return null;
+	}
 }
