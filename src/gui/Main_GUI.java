@@ -34,7 +34,7 @@ public class Main_GUI extends Application{
 	
 	private PersonForm personForm;
 	private MovementForm movementForm;
-	
+	private HealthForm healthForm;
 	
 	public static void main(String[] args)
 	{
