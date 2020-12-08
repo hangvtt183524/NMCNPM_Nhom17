@@ -70,14 +70,14 @@ public class IsolationForm extends FormFunction{
 		this.setGridLinesVisible(true);
 
 
-		this.searchLb = new Label("Nhập thông tin tìm kiếm");
+		this.searchLb = new Label("Nhap thong tin tim kiem:");
 		this.searchLb.setFont(new Font("Aria", 23));
 		this.searchLb.setAlignment(Pos.CENTER_LEFT);
 		this.searchLb.setMaxSize(390.0, 150.0);
 		this.searchLb.setPrefSize(100.0, 75.0);
 		this.add(this.searchLb, 0, 1, 1, 1);
 		
-		this.choiceLb = new Label("Tìm kiếm theo");
+		this.choiceLb = new Label("Tim kiem theo: ");
 		this.choiceLb.setFont(new Font("Aria", 23));
 		this.choiceLb.setAlignment(Pos.CENTER_RIGHT);
 		this.choiceLb.setMaxSize(390.0, 150.0);
@@ -92,10 +92,10 @@ public class IsolationForm extends FormFunction{
 		this.add(this.searchTxt, 1, 1, 1, 1);
 		
 		this.table = new TableView<Person>();
-		TableColumn<Person, Integer> idHoKhauCl = new TableColumn<Person, Integer>("ID hộ khẩu");
-		TableColumn<Person, Integer> idNhanKhauCl = new TableColumn<Person, Integer>("ID nhân khẩu");
-		TableColumn<Person, String> hoTenCl = new TableColumn<Person, String>("Họ và tên");
-		TableColumn<Person, String> cccdCl = new TableColumn<Person, String>("Số CCCD");
+		TableColumn<Person, Integer> idHoKhauCl = new TableColumn<Person, Integer>("id_ho_khau");
+		TableColumn<Person, Integer> idNhanKhauCl = new TableColumn<Person, Integer>("id_nhan_khau");
+		TableColumn<Person, String> hoTenCl = new TableColumn<Person, String>("ho_va_ten");
+		TableColumn<Person, String> cccdCl = new TableColumn<Person, String>("cccd");
 		
 		idHoKhauCl.setPrefWidth(250);
 		idNhanKhauCl.setPrefWidth(250);
@@ -105,7 +105,11 @@ public class IsolationForm extends FormFunction{
 		this.table.getColumns().addAll(idHoKhauCl, idNhanKhauCl, hoTenCl, cccdCl);
 		this.add(this.table, 0, 3, 5, 16);
 		
-		ObservableList<String> choices = FXCollections.observableArrayList("ID hộ khẩu", "ID nhân khẩu", "Tên", "Số CCCD");
+		ObservableList<String> choices = FXCollections.observableArrayList("id_ho_khau", "id_nhan_khau", "ho_va_ten", "cccd");
 	    ChoiceBox<String> choiceBox = new ChoiceBox<>(choices);
 		this.add(choiceBox, 3, 1, 1, 1);
+		public ResultSet search_event(String query) {
+		return null;
+		
+	}
 }
