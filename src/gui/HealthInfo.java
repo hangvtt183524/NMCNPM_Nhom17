@@ -98,4 +98,10 @@ public class HealthInfo extends GridPane implements Info{
 		label.setPrefSize(100.0, 75.0);
 		return label;
 	}
+
+	@Override
+	public void saveInfo() {
+		// TODO Auto-generated method stub
+		
+	}
 }

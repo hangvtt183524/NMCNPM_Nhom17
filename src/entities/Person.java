@@ -5,89 +5,103 @@ import java.util.Date;
 
 public class Person {
 	
+	private int order;
 	private int id_nhan_khau;
 	private int id_ho_khau;
-	private String ho_va_ten;
-	private Date ngay_sinh;
-	private String dia_chi;
+	private String fullName;
+	private String day, month, year;
+	private String Address;
+	private String cert;
+	private boolean gender;
 	
 	//private ArrayList<PersonForm> PersonFormList;
-	
+	public Person(int order)
+	{
+		this.order = order;
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
 	public int getId_nhan_khau() {
 		return id_nhan_khau;
 	}
-
-
 
 	public void setId_nhan_khau(int id_nhan_khau) {
 		this.id_nhan_khau = id_nhan_khau;
 	}
 
-
-
 	public int getId_ho_khau() {
 		return id_ho_khau;
 	}
-
-
 
 	public void setId_ho_khau(int id_ho_khau) {
 		this.id_ho_khau = id_ho_khau;
 	}
 
+	public String getFullName() {
+		return fullName;
+	}
 
-
-	public String getHo_va_ten() {
-		return ho_va_ten;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 
 
-	public void setHo_va_ten(String ho_va_ten) {
-		this.ho_va_ten = ho_va_ten;
+	public String getDay() {
+		return day;
 	}
 
-
-
-	public Date getNgay_sinh() {
-		return ngay_sinh;
+	public void setDay(String day) {
+		this.day = day;
 	}
 
-
-
-	public void setNgay_sinh(Date ngay_sinh) {
-		this.ngay_sinh = ngay_sinh;
+	public String getMonth() {
+		return month;
 	}
 
-
-
-	public String getDia_chi() {
-		return dia_chi;
+	public void setMonth(String month) {
+		this.month = month;
 	}
 
-
-
-	public void setDia_chi(String dia_chi) {
-		this.dia_chi = dia_chi;
+	public String getYear() {
+		return year;
 	}
 
-
-
-	/*public ArrayList<PersonForm> getPersonFormList() {
-		return PersonFormList;
+	public void setYear(String year) {
+		this.year = year;
 	}
 
-
-
-	public void setPersonFormList(ArrayList<PersonForm> personFormList) {
-		PersonFormList = personFormList;
-	}*/
-
-
-
-	public Person(String ten, String socmnd, String ltrinh) {
-		// TODO Auto-generated constructor stub
+	public String getAddress() {
+		return Address;
 	}
-		
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
+	public String getCert() {
+		return cert;
+	}
+
+	public void setCert(String cert) {
+		this.cert = cert;
+	}
+
+	public Boolean getGender() {
+		return gender;
+	}
+
+	public void setGender(boolean gender) {
+		this.gender = gender;
+	}
+	
+	
 }
 	
