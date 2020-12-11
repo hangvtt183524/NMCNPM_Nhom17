@@ -36,7 +36,7 @@ public class MovementForm extends FormFunction{
 		column4.setPercentWidth(8);
 		column5.setPercentWidth(10);
 		column6.setPercentWidth(12);
-		
+
 		this.getColumnConstraints().addAll(column1, column2, column3, column4, column5, column6);
 		
 		for (int i=0; i< 25; i++) {
