@@ -1,8 +1,9 @@
 package gui;
 
+import java.util.List;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
->>>>>>> master
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TableColumn;

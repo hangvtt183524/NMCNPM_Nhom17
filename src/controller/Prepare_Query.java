@@ -1,5 +1,6 @@
 package controller;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,13 +10,12 @@ import java.sql.Statement;
 
 public class Prepare_Query {
 	protected ConnectDB conn;
-	protected Statement stat;
+	protected PreparedStatement prestat;
 	
 	public Prepare_Query()
 	{
 		try {
 			conn = new ConnectDB();
-			this.stat = this.conn.getConnection().createStatement();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -23,15 +23,14 @@ public class Prepare_Query {
 		
 	}
 	
-	public Statement getStatement()
+	public PreparedStatement getPreStatement()
 	{
-		return this.stat;
+		return this.prestat;
 	}
 	
 	public void closeStatement()
 	{
 		try {
-			this.stat.close();
 			this.conn.closeConnect();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
