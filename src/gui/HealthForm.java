@@ -16,7 +16,7 @@ public class HealthForm extends FormFunction{
 
 	private Label color;
 	private HealthInfo healthInfo;
-	
+
 	public HealthForm() 
 	{
 		super();
@@ -72,6 +72,5 @@ public class HealthForm extends FormFunction{
 		this.saveBtn.setMaxSize(100.0, 35.0);
 		this.add(this.saveBtn, 4, 20, 1, 2);
 	}
-	
-	
+
 }
