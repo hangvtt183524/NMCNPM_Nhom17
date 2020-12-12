@@ -20,6 +20,11 @@ public class Person {
 		this.Address = address;
 		this.fullName = null;
 	}
+	
+	public Person()
+	{
+		
+	}
 
 	public int getOrder() {
 		return order;
