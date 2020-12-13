@@ -2,13 +2,14 @@ package entities;
 
 public class Health {
 	private String cccd;
-	private String stt;
-	private String tinh_trang_suc_khoe;
+	private String sTT;
+	private String tinh_trang;
 	private String bieu_hien;
+	private String ngay_ghi_nhan;
 	
-	public Health(String cccd)
+	public Health(String sTT)
 	{
-		this.cccd = cccd;
+		this.sTT = sTT;
 	}
 
 	public String getCccd() {
@@ -20,19 +21,19 @@ public class Health {
 	}
 
 	public String getStt() {
-		return stt;
+		return sTT;
 	}
 
 	public void setStt(String stt) {
-		this.stt = stt;
+		this.sTT = stt;
 	}
 
-	public String getTinh_trang_suc_khoe() {
-		return tinh_trang_suc_khoe;
+	public String getTinh_trang() {
+		return tinh_trang;
 	}
 
-	public void setTinh_trang_suc_khoe(String tinh_trang_suc_khoe) {
-		this.tinh_trang_suc_khoe = tinh_trang_suc_khoe;
+	public void setTinh_trang(String tinh_trang_suc_khoe) {
+		this.tinh_trang = tinh_trang_suc_khoe;
 	}
 
 	public String getBieu_hien() {
@@ -43,5 +44,11 @@ public class Health {
 		this.bieu_hien = bieu_hien;
 	}
 	
-	
+	public String getNgay_ghi_nhan() {
+		return ngay_ghi_nhan;
+	}
+
+	public void setNgay_ghi_nhan(String ngay_ghi_nhan) {
+		this.ngay_ghi_nhan = ngay_ghi_nhan;
+	}
 }
