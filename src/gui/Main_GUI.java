@@ -33,8 +33,17 @@ public class Main_GUI extends Application{
 	private Label logout;
 	
 	private PersonForm personForm;
-	private MovementForm movementForm;
 	private HealthForm healthForm;
+	private MovementForm movementForm;
+	private ResultTestForm resultTestForm;
+	private ViewForm viewForm;
+	private IsolationForm isolationForm;
+	
+	private EventHandler<MouseEvent> eventHandler1;
+	private EventHandler<MouseEvent> eventHandler2;
+	private EventHandler<MouseEvent> eventHandler3;
+	
+	private Label pre;
 	
 	public static void main(String[] args)
 	{
@@ -50,7 +59,7 @@ public class Main_GUI extends Application{
 		
 		Scene scene = new Scene(root, 1500, 850);
 		 
-        primaryStage.setTitle("Covid-19");
+        primaryStage.setTitle("QL_Covid19_NMCNPM_Nhom17");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
@@ -81,7 +90,7 @@ public class Main_GUI extends Application{
 	private void setNavigatePane()
 	{
         this.navigate = new GridPane();
-        this.navigate.setStyle("-fx-background-color: #26ad48;");
+        this.navigate.setStyle("-fx-background-color: #7579e7;");
         
         for (int i=0; i< 10; i++) {
         	RowConstraints rowConst = new RowConstraints();
@@ -93,20 +102,37 @@ public class Main_GUI extends Application{
         colConst.setPercentWidth(100.0);
         this.navigate.getColumnConstraints().add(colConst);
         
-        this.person = new Label("Person");
-        this.health = new Label("Health");
-        this.isolation = new Label("Isolation");
-        this.movement = new Label("Movement");
-        this.test = new Label("Test");
-        this.view = new Label("View");
-        
         this.navigate.add(setLabel(this.person), 0, 1, 1, 1);
         this.navigate.add(setLabel(this.movement), 0, 2, 1, 1);
         this.navigate.add(setLabel(this.health), 0, 3, 1, 1);
-        this.navigate.add(setLabel(this.isolation), 0, 4, 1, 1);
-        this.navigate.add(setLabel(this.test), 0, 5, 1, 1);
+        this.navigate.add(setLabel(this.test), 0, 4, 1, 1);
+        this.navigate.add(setLabel(this.isolation), 0, 5, 1, 1);
         this.navigate.add(setLabel(this.view), 0, 6, 1, 1);
-        //this.navigate.add(child, columnIndex, rowIndex);
+        
+        setEventHandle();
+        this.person.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+        this.person.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+        this.person.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler3);
+        
+        this.movement.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+        this.movement.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+        this.movement.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler3);
+        
+        this.health.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+        this.health.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+        this.health.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler3);
+        
+        this.test.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+        this.test.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+        this.test.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler3);
+        
+        this.view.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+        this.view.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+        this.view.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler3);
+        
+        this.isolation.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+        this.isolation.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+        this.isolation.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler3);
         
 	}
 	
@@ -123,17 +149,48 @@ public class Main_GUI extends Application{
         colFunction.setPercentWidth(100.0);
         this.function.getColumnConstraints().add(colFunction);
         
-        this.personForm = new PersonForm();
+      //this.resultTestForm = new ResultTestForm();
+        //this.function.add(this.resultTestForm, 0,  0, 1, 1);
+        //getViewForm();
+	}
+	private void getPersonForm()
+	{
+		this.personForm = new PersonForm();
         this.function.add(this.personForm, 0, 0, 1, 1);
-        
-        //this.movementForm = new MovementForm();
-        //this.function.add(this.movementForm, 0, 0, 1, 1);
 	}
 	
+	private void getHealthForm()
+	{
+		this.healthForm = new HealthForm();
+        this.function.add(this.healthForm, 0, 0, 1, 1);
+	}
+	
+	private void getMovementForm()
+	{
+        this.movementForm = new MovementForm();
+        this.function.add(this.movementForm, 0,  0, 1, 1);
+	}
+	
+	private void getResultTestForm()
+	{
+		this.resultTestForm = new ResultTestForm();
+        this.function.add(this.resultTestForm, 0,  0, 1, 1);
+	}
+	
+	private void getViewForm()
+	{
+		this.viewForm = new ViewForm();
+		this.function.add(this.viewForm, 0, 0, 1, 1);
+	}
+	private void getIsolationForm()
+	{
+		this.isolationForm = new IsolationForm();
+		this.function.add(this.isolationForm, 0, 0, 1, 1);
+	}
 	private Label setLabel(Label label)
 	{
 		label.setFont(new Font("Aria", 25));
-		label.setStyle("-fx-background-color: #26ad48;"
+		label.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"
 				+ "-fx-font-weight: bold;");
 		label.setAlignment(Pos.CENTER);
@@ -146,26 +203,99 @@ public class Main_GUI extends Application{
 		return label;
 	}
 	
-	private void handleHoverLabel(Label label) 
+	private void setEventHandle()
 	{
-		EventHandler<MouseEvent> eventHandler1 = new EventHandler<MouseEvent>() { 
+		this.eventHandler2 = new EventHandler<MouseEvent>() { 
 			   @Override 
-			   public void handle(MouseEvent e) { 
-				   label.setStyle("-fx-background-color: #66e889;"
+			   public void handle(MouseEvent e) {
+				   Label node = (Label) e.getSource();
+				   node.setStyle("-fx-background-color: #7579e7;"
 				   		+ "-fx-text-fill: white;"
 				   		+ "-fx-font-weight: bold;");
 			   } 
 			};
-		label.addEventFilter(MouseEvent.MOUSE_ENTERED, eventHandler1);
 		
-		EventHandler<MouseEvent> eventHandler2 = new EventHandler<MouseEvent>() { 
+		this.eventHandler1 = new EventHandler<MouseEvent>() { 
 			   @Override 
-			   public void handle(MouseEvent e) { 
-				   label.setStyle("-fx-background-color: #26ad48;"
+			   public void handle(MouseEvent e) {
+				   Label node = (Label) e.getSource();
+				   node.setStyle("-fx-background-color: #9ab3f5;"
 				   		+ "-fx-text-fill: white;"
 				   		+ "-fx-font-weight: bold;");
 			   } 
 			};
-		label.addEventFilter(MouseEvent.MOUSE_EXITED, eventHandler2);
+		
+		this.eventHandler3 = new EventHandler<MouseEvent>() { 
+			   @Override 
+			   public void handle(MouseEvent e) {
+				   Label node = (Label) e.getSource();
+				   
+				   if (node != person) {
+					   person.setStyle("-fx-background-color: #7579e7;"
+						   		+ "-fx-text-fill: white;"
+						   		+ "-fx-font-weight: bold;");
+					   person.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+					   person.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+					   
+				   }
+				   else getPersonForm();
+				   
+				   if (node != movement) {
+					   movement.setStyle("-fx-background-color: #7579e7;"
+						   		+ "-fx-text-fill: white;"
+						   		+ "-fx-font-weight: bold;");
+					   movement.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+					   movement.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+					   
+				   }
+				   else getMovementForm();
+				   
+				   if (node != health) {
+					   health.setStyle("-fx-background-color: #7579e7;"
+						   		+ "-fx-text-fill: white;"
+						   		+ "-fx-font-weight: bold;");
+					   health.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+					   health.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+					   
+				   }
+				   
+				   else getHealthForm();
+				   
+				   if (node != isolation) {
+					   isolation.setStyle("-fx-background-color: #7579e7;"
+						   		+ "-fx-text-fill: white;"
+						   		+ "-fx-font-weight: bold;");
+					   isolation.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+					   isolation.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+				   }
+				   
+				   else getIsolationForm();
+				   
+				   if (node != test) {
+					   test.setStyle("-fx-background-color: #7579e7;"
+						   		+ "-fx-text-fill: white;"
+						   		+ "-fx-font-weight: bold;");
+					   test.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+					   test.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+				   }
+				   else getResultTestForm();
+				   
+				   if (node != view) {
+					   view.setStyle("-fx-background-color: #7579e7;"
+						   		+ "-fx-text-fill: white;"
+						   		+ "-fx-font-weight: bold;");
+					   view.addEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+					   view.addEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+				   }
+				   else getViewForm();
+				   
+				   node.removeEventHandler(MouseEvent.MOUSE_ENTERED, eventHandler1);
+				   node.removeEventHandler(MouseEvent.MOUSE_EXITED, eventHandler2);
+				   
+				   node.setStyle("-fx-background-color: #9ab3f5;"
+				   		+ "-fx-text-fill: white;"
+				   		+ "-fx-font-weight: bold;");
+			   } 
+			};
 	}
 }

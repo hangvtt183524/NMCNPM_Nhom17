@@ -46,6 +46,7 @@ public class PersonForm extends FormFunction{
 	private void setPersonForm()
 	{
 		
+		
 		ColumnConstraints column1 = new ColumnConstraints();
 		ColumnConstraints column2 = new ColumnConstraints();
 		ColumnConstraints column3 = new ColumnConstraints();
@@ -58,7 +59,6 @@ public class PersonForm extends FormFunction{
 		column4.setPercentWidth(28);
 		column5.setPercentWidth(15);
 		column6.setPercentWidth(5);
-		
 		
 		this.getColumnConstraints().addAll(column1, column2, column3, column4, column5, column6);
 		
@@ -78,6 +78,7 @@ public class PersonForm extends FormFunction{
 		this.tenChuHo_text = new TextField();
 		//this.tenChuHo_text.setPrefColumnCount(1);
 		this.tenChuHo_text.setMaxSize(300, 1);
+
 		this.tenChuHo_text.setStyle("-fx-font-weight: bold;");
 		//this.tenChuHo_text.setFont(new Font("Arial", 17));
 		this.add(this.tenChuHo_text, 2, 5, 1, 1);
@@ -203,5 +204,4 @@ public class PersonForm extends FormFunction{
 			};
 		this.saveBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 	}
-	
 }

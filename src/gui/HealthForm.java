@@ -11,12 +11,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Font;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
 public class HealthForm extends FormFunction{
 
-	private Label color;
 	private HealthInfo healthInfo;
-	
+
 	public HealthForm() 
 	{
 		super();
@@ -24,10 +25,7 @@ public class HealthForm extends FormFunction{
 	}
 	
 	private void setHealthForm()
-	{
-		this.setStyle("-fx-background-color: #fff0f0;"
-				+ "-fx-position: relative;");
-		
+	{	
 		ColumnConstraints column1 = new ColumnConstraints();
 		ColumnConstraints column2 = new ColumnConstraints();
 		ColumnConstraints column3 = new ColumnConstraints();
@@ -53,25 +51,58 @@ public class HealthForm extends FormFunction{
 		this.setVgap(5);
 		//this.setGridLinesVisible(true);
 		
-		this.color = new Label("");
-		this.color.setStyle("-fx-background-color: #9ab3f5;");
-		this.color.setMaxSize(1200, 150.0);
-		
 		this.add(this.color, 0, 1, 6, 4);
 		
-		this.addBtn = new Button("Add New");
+		this.addBtn = new Button("Add");
+		this.addBtn.setStyle("-fx-background-color: #7579e7;"
+				+ "-fx-text-fill: white;"
+				+ "-fx-font-weight: bold;");
 		this.addBtn.setMaxSize(100.0, 35.0);
-		this.addBtn.setStyle("-fx-border: red solid;");
 		this.add(this.addBtn, 1, 6, 1, 2);
 		
-		
-		this.healthInfo = new HealthInfo();
-		this.add(this.healthInfo, 1, 8, 4, 12);
-		
 		this.saveBtn = new Button("Save");
-		this.saveBtn.setMaxSize(100.0, 35.0);
-		this.add(this.saveBtn, 4, 20, 1, 2);
+		this.addBtn.setStyle("-fx-background-color: #7579e7;"
+				+ "-fx-text-fill: white;"
+				+ "-fx-font-weight: bold;");
+		this.saveBtn.setDisable(false);
+		setAddButtonEventHandle();
 	}
 	
-	
+	private void getHealthInfo()
+	{
+		this.healthInfo = new HealthInfo();
+		this.add(this.healthInfo, 1, 8, 4, 12);
+	}
+	private void setSaveButton()
+	{
+		this.saveBtn = new Button("Save");
+		this.saveBtn.setStyle("-fx-background-color: #7579e7;"
+				+ "-fx-text-fill: white;"
+				+ "-fx-font-weight: bold;");
+		this.saveBtn.setMaxSize(100.0, 35.0);
+		this.add(this.saveBtn, 4, 20, 1, 2);
+		setSaveButtonEventHandle();
+	}
+	private void setAddButtonEventHandle()
+	{
+		EventHandler eventHandler = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				getHealthInfo();
+				setSaveButton();
+			}
+		};
+		this.addBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+	}
+	private void setSaveButtonEventHandle()
+	{
+		EventHandler eventHandler = new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				healthInfo.saveInfo("");
+				if (healthInfo.getSuccess()) saveBtn.setDisable(true);
+			}
+		};
+		this.saveBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
+	}
 }
