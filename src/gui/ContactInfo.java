@@ -127,29 +127,6 @@ public class ContactInfo extends GridPane implements Info{
 			};
 		this.list.get(this.list.size() - 1).getNext().addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 	}
-	
-	public void saveInfo(String s)
-	{
-		RecordInformation saveInfo = new RecordInformation();
-		for (int i=0; i< this.cnt; i++) {
-		try {
-				saveInfo.query_change("insert into quan_ly_tiep_xuc (ho_va_ten, noi_tiep_xuc, id_nguon) values (?, ?, ?);");
-				saveInfo.getPreStatement().setString(1, this.list.get(i).getName());
-				saveInfo.getPreStatement().setString(2, this.list.get(i).getAddress());
-				saveInfo.getPreStatement().setInt(3, Integer.parseInt(s));
-				
-				saveInfo.getPreStatement().executeUpdate();
-				this.success = true;
-				saveInfo.closeState();
-
-				//System.out.println(Integer.parseInt(s));
-			}
-            catch (SQLException e) {
-			e.printStackTrace();
-		}
-		}
-	}
-	
 	public boolean checkValid()
 	{
 		for (int i=0; i< this.cnt; i++) {
@@ -168,5 +145,28 @@ public class ContactInfo extends GridPane implements Info{
 	public boolean getSuccess()
 	{
 		return this.success;
+	}
+
+	@Override
+	public void saveInfo(String s) {
+		RecordInformation saveInfo = new RecordInformation();
+		for (int i=0; i< this.cnt; i++) {
+		try {
+				saveInfo.query_change("insert into quan_ly_tiep_xuc (ho_va_ten, noi_tiep_xuc, id_nguon) values (?, ?, ?);");
+				saveInfo.getPreStatement().setString(1, this.list.get(i).getName());
+				saveInfo.getPreStatement().setString(2, this.list.get(i).getAddress());
+				saveInfo.getPreStatement().setInt(3, Integer.parseInt(s));
+				
+				saveInfo.getPreStatement().executeUpdate();
+				this.success = true;
+				saveInfo.closeState();
+
+				//System.out.println(Integer.parseInt(s));
+			}
+            catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+		
 	}
 }

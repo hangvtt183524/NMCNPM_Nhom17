@@ -12,8 +12,6 @@ import javafx.scene.layout.RowConstraints;
 
 public class MovementForm extends FormFunction{
 	private MoveInfo moveInfo;
-	private ContactInfo contactInfo;
-	private Button next;
  
 	public MovementForm()
 	{
@@ -28,7 +26,7 @@ public class MovementForm extends FormFunction{
 		ColumnConstraints column3 = new ColumnConstraints();
 		ColumnConstraints column4 = new ColumnConstraints();
 		ColumnConstraints column5 = new ColumnConstraints();
-		ColumnConstraints column5 = new ColumnConstraints();
+		ColumnConstraints column6 = new ColumnConstraints();
 
 		column1.setPercentWidth(5);
 		column2.setPercentWidth(15);
@@ -61,7 +59,6 @@ public class MovementForm extends FormFunction{
 		//this.add(this.next, 3, 20, 1, 2);
 		
 		this.saveBtn = new Button("Save");
-		this.next = new Button("Next");
 		
 		setAddButtonEventHandle();
 	}
@@ -72,11 +69,6 @@ public class MovementForm extends FormFunction{
 		this.add(this.moveInfo, 1, 8, 4, 12);
 	}
 
-	private void getContactInfo()
-	{
-		this.contactInfo = new ContactInfo();
-		this.add(this.contactInfo, 1, 8, 4, 12);
-	}
 
 	private void setSaveAndNextButton()
 	{
@@ -86,17 +78,9 @@ public class MovementForm extends FormFunction{
 				+ "-fx-text-fill: white;"
 				+ "-fx-font-weight: bold;");
 		
-		this.next = new Button("Next");
-		this.next.setMaxSize(100.0, 35.0);
-		this.next.setStyle("-fx-background-color: #7579e7;"
-				+ "-fx-text-fill: white;"
-				+ "-fx-font-weight: bold;");
-		
 		this.add(this.saveBtn, 4, 20, 1, 2);
-		this.add(this.next, 3, 20, 1, 2);
 		
 		setSaveButtonEventHandle();
-		setNextButtonEventHandle();
 	}
 
 	private void setAddButtonEventHandle()
@@ -116,44 +100,11 @@ public class MovementForm extends FormFunction{
 		EventHandler eventHandler = new EventHandler<MouseEvent>() { 
 			   @Override 
 			   public void handle(MouseEvent e) {
-				   if (moveInfo.getIsContact()) {
-					   if (contactInfo.checkValid()) {
-						   moveInfo.saveInfo("");
-						   contactInfo.saveInfo(""+ moveInfo.getIdNguoiDi());
-						   if (moveInfo.getSuccess() == true) {
-							   if (contactInfo.getSuccess()) saveBtn.setDisable(true);
-						   }
-					   }
-				   }
-				   else {
-					   moveInfo.saveInfo("");
-					   if (moveInfo.getSuccess() == true) saveBtn.setDisable(true);
-				   }
+				   moveInfo.saveInfo("");
+				   if (moveInfo.getSuccess()) saveBtn.setDisable(true);
 			   } 
 			};
 		this.saveBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 	}
 
-	private void setNextButtonEventHandle()
-	{
-		EventHandler eventHandler = new EventHandler<MouseEvent>() { 
-			   @Override 
-			   public void handle(MouseEvent e) {
-				   if (moveInfo.getCert() == null || moveInfo.getCert().getText() == "" || moveInfo.getDiaDiem() == null || moveInfo.getDiaDiem().getText() == null//
-						   || moveInfo.getTime() == null || moveInfo.getTime().getValue() == null) {
-					   Alert alert = new Alert(AlertType.INFORMATION);
-				        alert.setTitle("Notification!");
-				        alert.setContentText("Hay dien day du thong tin can thiet!");
-				        alert.showAndWait();
-				        
-				        return;
-				   }
-				   if (moveInfo.getIsContact()) {
-					   getContactInfo();
-					   next.setDisable(true);
-				   }
-			   } 
-			};
-		this.next.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-	}	
 }

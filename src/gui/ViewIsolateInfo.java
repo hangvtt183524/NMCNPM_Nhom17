@@ -2,6 +2,10 @@ package gui;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import controller.RecordInformation;
 import entities.Contact;
@@ -50,11 +54,6 @@ public class ViewIsolateInfo extends GridPane implements Info{
 		
 		label.setMaxSize(1500.0, 10.0);
 		return label;
-	}
-
-	@Override
-	public void saveInfo(String s) {
-		
 	}
 	public ViewIsolateInfo()
 	{
@@ -305,12 +304,37 @@ public class ViewIsolateInfo extends GridPane implements Info{
 			};
 		this.done.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 	}
-	
-	public boolean getSuccess()
-	{
-		return this.success;
+
+	@Override
+	public void saveInfo(String s) {
+RecordInformation saveInfo = new RecordInformation();
+		
+		try {
+			for (int i=0; i<this.list.size(); i++) {
+				saveInfo.query_change("update quan_ly_cach_ly set da_xet_nghiem = ?, da_het_han = ? where cccd = ? and datediff('d', ngay_bat_dau, ?) = 0;");
+				saveInfo.getPreStatement().setBoolean(1, this.list.get(i).getTest());
+				saveInfo.getPreStatement().setBoolean(2, this.list.get(i).getOutDate());
+				saveInfo.getPreStatement().setString(3, this.list.get(i).getCCCD());
+				
+				SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+				Date date = df.parse(this.list.get(i).getTime().substring(5, 7) + "/" + this.list.get(i).getTime().substring(8, 10) + "/" + this.list.get(i).getTime().substring(0, 4));
+				saveInfo.getPreStatement().setTimestamp(4,new Timestamp(date.getTime()));
+				
+				saveInfo.getPreStatement().executeUpdate();
+			}
+			saveInfo.closeState();
+		}
+		catch(SQLException e) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle("Error!");
+	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.showAndWait();
+	        e.printStackTrace();
+	        return;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
 
-	
-}

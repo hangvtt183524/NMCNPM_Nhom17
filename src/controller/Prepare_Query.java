@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 // this is a parent class of RecordInformation class and ShowInformation class
-// this class controls a object (Statement stat) in order to ready execute a command which effect to records in database
+// this class controls a object (PreparedStatement stat) in order to ready execute a command which effect to records in database
 
 public class Prepare_Query {
 	protected ConnectDB conn;

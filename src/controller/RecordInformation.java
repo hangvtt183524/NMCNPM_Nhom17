@@ -25,6 +25,7 @@ public class RecordInformation extends Prepare_Query{
 	public void query_change(String sql)
 	{
 		try {
+			// thuc hien theo cau truy van dc truyen vao qua bien sql
 			this.prestat = this.conn.getConnection().prepareStatement(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
