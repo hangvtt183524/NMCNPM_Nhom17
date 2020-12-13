@@ -1,7 +1,12 @@
 package gui;
 
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import controller.RecordInformation;
 import entities.Person;
 import javafx.application.Application;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -13,6 +18,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
@@ -21,6 +27,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -34,17 +41,23 @@ import javafx.scene.layout.RowConstraints;
 
 public class MemberInfo extends GridPane implements Info{
 	private TableView<Person> table;
+	private ObservableList<Person> list;
 	private int number;
+	private String certChuHo;
+	private String diaChi;
+	private boolean success = false;
 
 	@Override
 	public Label setLabel(Label label, String s) {
 		return label;
 	}
 	
-	public MemberInfo(int number)
+	public MemberInfo(int number, String tenChuHo, String diaChi)
 	{
 		super();
 		this.number = number;
+		this.certChuHo = tenChuHo;
+		this.diaChi = diaChi;
 		setMemberInfoPane();
 	}
 	
@@ -80,6 +93,14 @@ public class MemberInfo extends GridPane implements Info{
 	      address.setCellValueFactory(new PropertyValueFactory<>("Address"));
 	      genderCol.setCellValueFactory(new PropertyValueFactory<>("Gender"));
 	      orderCol.setCellValueFactory(new PropertyValueFactory<>("Order"));
+	      
+	      userNameCol.setStyle("-fx-alignment: center;");
+	      dayCol.setStyle("-fx-alignment: center;");
+	      monthCol.setStyle("-fx-alignment: center;");
+	      yearCol.setStyle("-fx-alignment: center;");
+	      certCol.setStyle("-fx-alignment: center;");
+	      address.setStyle("-fx-alignment: center;");
+	      orderCol.setStyle("-fx-alignment: center;");
 	      
 	      orderCol.setMinWidth(50);
 	      orderCol.setMaxWidth(50);
@@ -182,27 +203,93 @@ public class MemberInfo extends GridPane implements Info{
 		      });
 	       
 	       
-	      table.getColumns().addAll(orderCol, userNameCol, dateOfBirthCol, address, certCol, genderCol);
-	      table.setEditable(true);
-	      // Hiển thị các dòng dữ liệu
-	      ObservableList<Person> list = getUserList();
-	      table.setItems(list);
-	      this.add(this.table, 0, 0, 1, 1);
+	       table.getColumns().addAll(orderCol, userNameCol, dateOfBirthCol, address, certCol, genderCol);
+		      table.setEditable(true);
+		      // Hiển thị các dòng dữ liệu
+		      this.list = FXCollections.observableArrayList();
+		      getUserList();
+		      table.setItems(list);
+		      this.add(this.table, 0, 0, 1, 1);
 	  }
 	 
-	  private ObservableList<Person> getUserList() {
+	private void getUserList() {
 		  Person person;
-	      ObservableList<Person> list = FXCollections.observableArrayList();
 	      
 	      for (int i=0; i< this.number; i++) {
-	    	  person = new Person(i+1);
+	    	  person = new Person(i+1, this.diaChi);
 	    	  list.add(person);
 	      }
-	      return list;
 	  }
 
 	@Override
-	public void saveInfo() {
-		
+	public void saveInfo(String s) {
+		RecordInformation saveInDB = new RecordInformation();
+		if (this.list.get(0).getCert() != null && !this.list.get(0).getCert().equals(this.certChuHo)) {
+			//System.out.println(this.list.get(0).getFullName());
+			//System.out.println(this.certChuHo);
+			Alert alert = new Alert(AlertType.INFORMATION);
+	        alert.setTitle("Notification!");
+	        alert.setContentText("Chu ho phai la nguoi dau tien duoc liet ke trong danh sach.");
+	        alert.showAndWait();
+	        
+	        try {
+	        	saveInDB.query_change("delete * from thong_tin_ho_khau where cccd_chu_ho = ?;");
+	        	saveInDB.getPreStatement().setString(1, this.certChuHo);
+				saveInDB.getPreStatement().executeUpdate();
+				
+				saveInDB.closeState();
+				this.success = false;
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		else {
+			for (int i=0; i<this.list.size(); i++) {
+				Person p = this.list.get(i);
+				if (p.getFullName() == null || p.getCert() == null || p.getMonth() == null || p.getDay() == null || p.getYear() == null || p.getGender() == null) {
+					Alert alert = new Alert(AlertType.INFORMATION);
+			        alert.setTitle("Notification!");
+			        alert.setContentText("Hay dien day du cac thong tin truoc khi luu!");
+			        alert.showAndWait();
+			        
+			        return;
+				}
+			}
+			try {
+				Person p;
+				for (int i=0; i<this.list.size(); i++) {
+					p = this.list.get(i);
+					saveInDB.query_change("insert into thong_tin_nhan_khau (id_ho_khau, cccd, ho_va_ten, ngay_sinh, gioi_tinh_nu) values (?, ?, ?, ?, ?);");
+					saveInDB.getPreStatement().setString(1, s);
+					saveInDB.getPreStatement().setString(2, p.getCert());
+					saveInDB.getPreStatement().setString(3, p.getFullName());
+					
+					SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+					Date date = df.parse(p.getMonth()+"/"+p.getDay() + "/" + p.getYear());
+					saveInDB.getPreStatement().setTimestamp(4,new Timestamp(date.getTime()));
+					//saveInDB.getPreStatement().setDate(4, new Date(Integer.parseInt(p.getMonth()), Integer.parseInt(p.getDay()), Integer.parseInt(p.getYear())));
+					saveInDB.getPreStatement().setBoolean(5, p.getGender());
+					saveInDB.getPreStatement().executeUpdate();
+				}
+				
+				saveInDB.closeState();
+			} catch (SQLException e) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("Error!");
+		        alert.setContentText("Khong the thuc hien yeu cau!");
+		        alert.showAndWait();
+		        //e.printStackTrace();
+		        return;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+	
+	public boolean getSuccess()
+	  {
+		  return this.success;
+	  }
 	}

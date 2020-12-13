@@ -1,13 +1,15 @@
 package gui;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import controller.RecordInformation;
-import controller.ShowInformation;
 import entities.Person;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -63,7 +65,10 @@ public class MoveInfo extends GridPane implements Info{
 	
 	private void setMoveInfoPane()
 	{
-		this.setStyle("-fx-background-color: #f8efd4;");
+		this.setStyle("-fx-background-color: #f8efd4;"
+				+ "-fx-border-style: solid;"
+				+ "-fx-border-color: #7579e7;"
+				+ "-fx-border-width: 3;");
 		
 		ColumnConstraints column1 = new ColumnConstraints();
 		ColumnConstraints column2 = new ColumnConstraints();
@@ -76,9 +81,9 @@ public class MoveInfo extends GridPane implements Info{
 		
 		this.getColumnConstraints().addAll(column1, column2, column3, column4);
 		
-		for (int i=0; i< 10; i++) {
+		for (int i=0; i< 9; i++) {
         	RowConstraints rowConst = new RowConstraints();
-        	rowConst.setPercentHeight(100/10);
+        	rowConst.setPercentHeight(100/9);
         	this.getRowConstraints().add(rowConst);
         }
 		
@@ -162,14 +167,19 @@ public class MoveInfo extends GridPane implements Info{
 	{
 		this.dicung.selectedProperty().addListener(
 			      (ObservableValue<? extends Boolean> ov, Boolean old_val, Boolean new_val) -> {
+			    	if ((cert.getText() == null || cert.getText().equals("")) && dicung.isSelected()) {
+			    		Alert alert = new Alert(AlertType.INFORMATION);
+				        alert.setTitle("Error!");
+				        alert.setContentText("Hay nhap so CCCD!");
+				        dicung.setSelected(false);
+				        alert.showAndWait();
+				        
+				        return;
+			    	}
 			  		setListView();
 			      });
 	}
 	
-	public boolean getIsContact()
-	{
-		return this.contact.isSelected();
-	}
 	public TextField getCert()
 	{
 		return this.cert;
@@ -217,7 +227,9 @@ public class MoveInfo extends GridPane implements Info{
 				saveInfo.query_change("insert into quan_ly_di_chuyen (cccd, vung_dich_di_qua, ngay_di) values (?, ?, ?);");
 				saveInfo.getPreStatement().setString(1, this.id_people.get(i));
 				saveInfo.getPreStatement().setString(2, this.diadiem.getText());
-				saveInfo.getPreStatement().setDate(3, new Date(this.thoigian.getValue().getMonthValue(), this.thoigian.getValue().getDayOfMonth(), this.thoigian.getValue().getYear()));
+				SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+				Date date = df.parse(this.thoigian.getValue().getMonthValue()+"/"+this.thoigian.getValue().getDayOfMonth() + "/" + this.thoigian.getValue().getYear());
+				saveInfo.getPreStatement().setTimestamp(3,new Timestamp(date.getTime()));
 				saveInfo.getPreStatement().executeUpdate();
 		} 
 		this.success = true;
@@ -230,6 +242,9 @@ public class MoveInfo extends GridPane implements Info{
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	

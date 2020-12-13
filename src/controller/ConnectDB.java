@@ -16,6 +16,7 @@ public class ConnectDB {
 	
 	public void closeConnect() throws SQLException
 	{
+		// dong connect khi da thuc hien xong truy van
 		this.conn.close();
 	}
 	

@@ -1,8 +1,11 @@
 package gui;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -72,10 +75,10 @@ public class HealthInfo extends GridPane implements Info{
 		this.add(setLabel(this.bieuhien_label, "Bieu Hien"), 0, 4, 1, 1);
 		this.add(setLabel(this.ngay, "Ngay Ghi Nhan"), 0, 8, 1, 1);
 		
-		this.ten = new TextField();
+		this.cert = new TextField();
 		this.cert.setStyle("-fx-font-weight: bold;");
-		this.ten.setMaxSize(400, 1);
-		this.add(this.ten, 1, 0, 2, 1);
+		this.cert.setMaxSize(400, 1);
+		this.add(this.cert, 1, 0, 2, 1);
 		
 		ToggleGroup group = new ToggleGroup();
 		
@@ -151,7 +154,11 @@ public class HealthInfo extends GridPane implements Info{
 				saveInfo.getPreStatement().setString(2, "bat thuong");
 				saveInfo.getPreStatement().setString(3, this.bieuhien.getText());
 			}
-			saveInfo.getPreStatement().setDate(4, new Date(this.ngayghinhan.getValue().getMonthValue(), this.ngayghinhan.getValue().getDayOfMonth(), this.ngayghinhan.getValue().getYear()));
+			SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+			Date date = df.parse(this.ngayghinhan.getValue().getMonthValue()+"/"+this.ngayghinhan.getValue().getDayOfMonth() + "/" + this.ngayghinhan.getValue().getYear());
+			saveInfo.getPreStatement().setTimestamp(4,new Timestamp(date.getTime()));
+			//saveInfo.getPreStatement().setDate(4, new Date(this.ngayghinhan.getValue().getMonthValue(), this.ngayghinhan.getValue().getDayOfMonth(), this.ngayghinhan.getValue().getYear()));
+			
 			saveInfo.getPreStatement().executeUpdate();
 			saveInfo.closeState();
 			this.success = true;
@@ -162,6 +169,9 @@ public class HealthInfo extends GridPane implements Info{
 			alert.setContentText("Khong the thuc hien yeu cau!");
 			alert.showAndWait();
 			return;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	public boolean getSuccess()
