@@ -1,77 +1,77 @@
 package entities;
 
-import java.sql.Date;
-import java.sql;
+import javafx.scene.control.Button;
 
 public class Isolation {
-	private int id_nhan_khau;
-	private int muc_do_cach_ly;
-	private String da_tiep_xuc;
-	private Date ngay_bat_dau;
-	private String dia_diem_cach_ly;
-	private CheckBox da_kiem_tra;
-
+	private String stt;
+	private String cccd;
+	private String ten;
+	private String muc_do;
+	private String dia_diem;
+	private String ngay_bat_dau;
+	private boolean da_xet_nghiem;
+	private boolean da_het_han;
+	private Button more;
 	
-	public Isolation()
+	public Isolation(String stt) 
 	{
-		
+		this.stt = stt;
+		this.more = new Button("More");
 	}
-	
-	public Isolation(int id, int muc_do, String tiep_xuc, CheckBox kt, String diadiem, Date thoigian)
-	{
-		this.id_nhan_khau = id;
-		this.muc_do_cach_ly = muc_do;
-		this.da_tiep_xuc = tiep_xuc
-		this.da_kiem_tra = kt;
-		this.dia_diem_cach_ly = diadiem;
-		this.ngay_bat_dau = thoigian;
+	public String getSTT() {
+		return stt;
 	}
-
-	public int getId_nhan_khau() {
-		return id_nhan_khau;
+	public void setSTT(String stt) {
+		this.stt = stt;
 	}
-
-	public void setId_nhan_khau(int id_nhan_khau) {
-		this.id_nhan_khau = id_nhan_khau;
+	public String getCCCD() {
+		return cccd;
 	}
-
-	public String getdia_diem_cach_ly() {
-		return dia_diem_cach_ly;
+	public void setCCCD(String cccd) {
+		this.cccd = cccd;
 	}
-
-	public void setdia_diem_cach_ly(String dia_diem_cach_ly) {
-		this.dia_diem_cach_ly = dia_diem_cach_ly;
+	public String getName() {
+		return ten;
 	}
-
-	public Date getngay_bat_dau() {
+	public void setName(String ten) {
+		this.ten = ten;
+	}
+	public String getLevel() {
+		return muc_do;
+	}
+	public void setLevel(String muc_do) {
+		this.muc_do = muc_do;
+	}
+	public String getPlace() {
+		return dia_diem;
+	}
+	public void setPlace(String dia_diem) {
+		this.dia_diem = dia_diem;
+	}
+	public String getTime() {
 		return ngay_bat_dau;
 	}
-
-	public void setngay_bat_dau(Date ngay_bat_dau) {
+	public void setTime(String ngay_bat_dau) {
 		this.ngay_bat_dau = ngay_bat_dau;
 	}
+	public boolean getTest() {
+		return da_xet_nghiem;
+	}
+	public void setTest(boolean da_xet_nghiem) {
+		this.da_xet_nghiem = da_xet_nghiem;
+	}
+	public boolean getOutDate() {
+		return da_het_han;
+	}
+	public void setOutDate(boolean da_het_han) {
+		this.da_het_han = da_het_han;
+	}
+	public Button getMore() {
+		return more;
+	}
+	public void setMore(Button more) {
+		this.more = more;
+	}
 	
-	public int getmuc_do_cach_ly(){
-		return muc_do_cach_ly;
-	}
-
-	public void setmuc_do_cach_ly(int muc_do_cach_ly){
-		this.muc_do_cach_ly = muc_do_cach_ly;
-	}
-
-	public String getda_tiep_xuc(){
-		return da_tiep_xuc;
-	}
-
-	public void setda_tiep_xuc(String da_tiep_xuc){
-		this.da_tiep_xuc = da_tiep_xuc;
-	}
-
-	public CheckBox getda_kiem_tra(){
-		return getda_kiem_tra;
-	}
-
-	public void setda_kiem_tra(CheckBox da_kiem_tra){
-		this.da_kiem_tra = da_kiem_tra;
-	}
+	
 }

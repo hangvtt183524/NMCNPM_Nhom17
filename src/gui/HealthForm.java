@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 public class HealthForm extends FormFunction{
 
 	private HealthInfo healthInfo;
-	
+
 	public HealthForm() 
 	{
 		super();
