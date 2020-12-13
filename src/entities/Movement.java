@@ -1,46 +1,57 @@
 package entities;
 
-import java.sql.Date;
 
 public class Movement {
-	private int id_nhan_khau;
-	private String vung_dich_di_qua;
-	private Date ngay_di;
+	private String stt;
+	private String ten;
+	private String diachi;
+	private String diemden;
+	private String thoigian;
 	
-	public Movement()
+	public Movement(String diemden, String stt)
 	{
-		
-	}
-	
-	public Movement(int id, String diadiem, Date thoigian)
-	{
-		this.id_nhan_khau = id;
-		this.vung_dich_di_qua = diadiem;
-		this.ngay_di = thoigian;
+		this.stt = stt;
+		this.diemden = diemden;
 	}
 
-	public int getId_nhan_khau() {
-		return id_nhan_khau;
+	public String getTen() {
+		return ten;
 	}
 
-	public void setId_nhan_khau(int id_nhan_khau) {
-		this.id_nhan_khau = id_nhan_khau;
+	public void setTen(String ten) {
+		this.ten = ten;
 	}
 
-	public String getVung_dich_di_qua() {
-		return vung_dich_di_qua;
+	public String getDiachi() {
+		return diachi;
 	}
 
-	public void setVung_dich_di_qua(String vung_dich_di_qua) {
-		this.vung_dich_di_qua = vung_dich_di_qua;
+	public void setDiachi(String diachi) {
+		this.diachi = diachi;
 	}
 
-	public Date getNgay_di() {
-		return ngay_di;
+	public String getDiemden() {
+		return diemden;
 	}
 
-	public void setNgay_di(Date ngay_di) {
-		this.ngay_di = ngay_di;
+	public void setDiemden(String diemden) {
+		this.diemden = diemden;
+	}
+
+	public String getThoigian() {
+		return thoigian;
+	}
+
+	public void setThoigian(String thoigian) {
+		this.thoigian = thoigian;
+	}
+
+	public String getStt() {
+		return stt;
+	}
+
+	public void setStt(String stt) {
+		this.stt = stt;
 	}
 	
 	

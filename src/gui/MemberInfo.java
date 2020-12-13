@@ -59,11 +59,8 @@ public class MemberInfo extends GridPane implements Info{
 		this.getRowConstraints().add(row1);
 		
 		this.table = new TableView<Person>();
-		
-		
-		this.table = new TableView<Person>();
-	      TableColumn<Person, String> userNameCol   = new TableColumn<Person, String>("UserName");
-	      TableColumn<Person, String> dateOfBirthCol = new TableColumn<Person, String>("DateOfBirth");
+	      TableColumn<Person, String> userNameCol   = new TableColumn<Person, String>("Name");
+	      TableColumn<Person, String> dateOfBirthCol = new TableColumn<Person, String>("Date Of Birth");
 	      TableColumn<Person, String> address = new TableColumn<Person, String>("Address");
 	      TableColumn<Person, String> certCol = new TableColumn<Person, String>("Cert");      
 	      TableColumn<Person, Boolean> genderCol = new TableColumn<Person, Boolean>("Female");

@@ -12,10 +12,20 @@ public class RecordInformation extends Prepare_Query{
 		super();
 	}
 	
+	public void closeState()
+	{
+		try {
+			this.prestat.close();
+			this.closeStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public void query_change(String sql)
 	{
 		try {
-			this.stat.execute(sql);
+			this.prestat = this.conn.getConnection().prepareStatement(sql);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -6,7 +6,6 @@ import java.util.Date;
 public class Person {
 	
 	private int order;
-	private int id_nhan_khau;
 	private int id_ho_khau;
 	private String fullName;
 	private String day, month, year;
@@ -15,9 +14,16 @@ public class Person {
 	private boolean gender;
 	
 	//private ArrayList<PersonForm> PersonFormList;
-	public Person(int order)
+	public Person(int order, String address)
 	{
 		this.order = order;
+		this.Address = address;
+		this.fullName = null;
+	}
+	
+	public Person()
+	{
+		
 	}
 
 	public int getOrder() {
@@ -26,14 +32,6 @@ public class Person {
 
 	public void setOrder(int order) {
 		this.order = order;
-	}
-
-	public int getId_nhan_khau() {
-		return id_nhan_khau;
-	}
-
-	public void setId_nhan_khau(int id_nhan_khau) {
-		this.id_nhan_khau = id_nhan_khau;
 	}
 
 	public int getId_ho_khau() {
