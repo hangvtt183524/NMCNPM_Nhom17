@@ -71,7 +71,7 @@ public class PersonForm extends FormFunction{
 		this.setColorLabel("Khai báo thông tin người dân");
 		this.add(this.color, 0, 1, 6, 3);
 		
-		this.add(setLabel(this.tenChuHo, "CCCD Chủ Hộ"), 1, 5, 1, 1);
+		this.add(setLabel(this.tenChuHo, "CCCD chủ hộ"), 1, 5, 1, 1);
 		this.add(setLabel(this.soThanhVien, "Số thành viên trong gia đình"), 3, 5, 1, 1);
 		this.add(setLabel(this.diachi, "Địa chỉ"), 1, 6, 1, 1);
 		
@@ -95,12 +95,11 @@ public class PersonForm extends FormFunction{
 		this.soThanhVien_spinner.setMaxSize(100, 4);
 		this.add(this.soThanhVien_spinner, 4, 5, 1, 1);
 		
-		this.addBtn = new Button("Add");
+		this.addBtn = new Button("Thêm mới");
 		this.addBtn.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"
 				+ "-fx-font-weight: bold;");
-		this.addBtn.setPrefSize(70, 5);
-		this.addBtn.setMaxSize(70, 5);
+		this.addBtn.setMaxSize(100.0, 35.0);
 		this.add(this.addBtn, 3, 6, 1, 1);
 		
 		this.saveBtn = new Button("Lưu");

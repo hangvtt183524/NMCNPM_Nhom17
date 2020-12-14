@@ -290,12 +290,19 @@ public class ViewIsolateInfo extends GridPane implements Info{
 		EventHandler eventHandler = new EventHandler<MouseEvent>() { 
 			   @Override 
 			   public void handle(MouseEvent e) {
+				   Button s = (Button) e.getSource();
+				   for (int i=0; i<list.size(); i++) {
+					   if (s == list.get(i).getMore()) {
+						   curr_cccd = list.get(i).getCCCD();
+						   break;
+					   }
+				   }
 				   getMoreInfo(curr_cccd);
 			   } 
 			};
 		
 		for (int i=0; i<this.list.size(); i++) {
-			curr_cccd = this.list.get(i).getCCCD();
+			//curr_cccd = this.list.get(i).getCCCD();
 			this.list.get(i).getMore().addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
 		}
 	}
