@@ -20,11 +20,11 @@ public class Health {
 		this.cccd = cccd;
 	}
 
-	public String getStt() {
+	public String getgetSTT() {
 		return sTT;
 	}
 
-	public void setStt(String stt) {
+	public void setSTT(String stt) {
 		this.sTT = stt;
 	}
 

@@ -68,11 +68,12 @@ public class PersonForm extends FormFunction{
         }
 		
 		//.setGridLinesVisible(true);
+		this.setColorLabel("Khai báo thông tin người dân");
 		this.add(this.color, 0, 1, 6, 3);
 		
-		this.add(setLabel(this.tenChuHo, "CCCD chu ho"), 1, 5, 1, 1);
-		this.add(setLabel(this.soThanhVien, "So thanh vien trong gia dinh"), 3, 5, 1, 1);
-		this.add(setLabel(this.diachi, "Dia chi"), 1, 6, 1, 1);
+		this.add(setLabel(this.tenChuHo, "CCCD Chủ Hộ"), 1, 5, 1, 1);
+		this.add(setLabel(this.soThanhVien, "Số thành viên trong gia đình"), 3, 5, 1, 1);
+		this.add(setLabel(this.diachi, "Địa chỉ"), 1, 6, 1, 1);
 		
 		this.tenChuHo_text = new TextField();
 		//this.tenChuHo_text.setPrefColumnCount(1);
@@ -102,14 +103,14 @@ public class PersonForm extends FormFunction{
 		this.addBtn.setMaxSize(70, 5);
 		this.add(this.addBtn, 3, 6, 1, 1);
 		
-		this.saveBtn = new Button("Save");
+		this.saveBtn = new Button("Lưu");
 		
 		setAddButtonEventHandle();
 	}
 	
 	private void setSaveButton()
 	{
-		this.saveBtn = new Button("Save");
+		this.saveBtn = new Button("Lưu");
 		this.saveBtn.setMaxSize(100.0, 35.0);
 		this.saveBtn.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"
@@ -144,7 +145,7 @@ public class PersonForm extends FormFunction{
 				   if (tenChuHo_text.getText() == null || tenChuHo_text.getText().equals("") || diachi_text.getText() == null || diachi_text.getText().equals("")) {
 					   Alert alert = new Alert(AlertType.INFORMATION);
 				        alert.setTitle("Message!");
-				        alert.setContentText("Ban can phai cung cap day du thong tin!");
+				        alert.setContentText("Bạn cần cung cấp đầy đủ thông tin!");
 				        alert.showAndWait();
 				        return;
 				   }
@@ -184,17 +185,18 @@ public class PersonForm extends FormFunction{
 					  saveInfo.closeState();
 				  }
 				  catch(SQLException ex) {
-						/*Alert alert = new Alert(AlertType.INFORMATION);
+						Alert alert = new Alert(AlertType.INFORMATION);
 				        alert.setTitle("Error!");
-				        alert.setContentText("Khong the thuc hien yeu cau!");
+				        alert.setContentText("Không thể thực hiện yêu cầu!");
 				        alert.showAndWait();
-				        return;*/
-					  ex.printStackTrace();
+				        return;
+					  //ex.printStackTrace();
 					}
 				  memberInfoPane.saveInfo(s);
 				  if (memberInfoPane.getSuccess()) {
 					  saveBtn.setDisable(true);
 					  tenChuHo_text.setEditable(true);
+					  soThanhVien_spinner.setDisable(false);
 					  soThanhVien_spinner.setEditable(true);
 					  diachi_text.setEditable(true);
 					  addBtn.setDisable(false);

@@ -58,14 +58,19 @@ public class ContactInfo extends GridPane implements Info{
 		this.getRowConstraints().add(row1);
 		this.contact = new TableView<Contact>();
 		TableColumn<Contact, String> sttCol = new TableColumn<Contact, String>("STT");
-		TableColumn<Contact, String> nameCol = new TableColumn<Contact, String>("Name");
-		TableColumn<Contact, String> addressCol = new TableColumn<Contact, String>("Address");
+		TableColumn<Contact, String> nameCol = new TableColumn<Contact, String>("Họ và Tên");
+		TableColumn<Contact, String> addressCol = new TableColumn<Contact, String>("Địa Chỉ");
 		TableColumn<Contact, String> nextCol = new TableColumn<Contact, String>("");
 		
 		sttCol.setCellValueFactory(new PropertyValueFactory<>("STT"));
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
 		addressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
 		nextCol.setCellValueFactory(new PropertyValueFactory<>("Next"));
+		
+		sttCol.setStyle("-fx-alignment: center;");
+		nameCol.setStyle("-fx-alignment: center;");
+		addressCol.setStyle("-fx-alignment: center;");
+		nextCol.setStyle("-fx-alignment: center;");
 		
 		nameCol.setMinWidth(300);
 		nameCol.setMaxWidth(300);
@@ -133,7 +138,7 @@ public class ContactInfo extends GridPane implements Info{
 			if (this.list.get(i) == null || this.list.get(i).getName() == null || this.list.get(i).getAddress() == null || this.list.get(i).getName().equals("") || this.list.get(i).getAddress().equals("")) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 		        alert.setTitle("Notification!");
-		        alert.setContentText("Dien day du thong tin truoc khi luu!");
+		        alert.setContentText("Điền đầy đủ thông tin trước khi lưu!");
 		        alert.showAndWait();
 		        return false;
 			}
@@ -150,23 +155,22 @@ public class ContactInfo extends GridPane implements Info{
 	@Override
 	public void saveInfo(String s) {
 		RecordInformation saveInfo = new RecordInformation();
-		for (int i=0; i< this.cnt; i++) {
 		try {
+		for (int i=0; i< this.cnt; i++) {
 				saveInfo.query_change("insert into quan_ly_tiep_xuc (ho_va_ten, noi_tiep_xuc, id_nguon) values (?, ?, ?);");
 				saveInfo.getPreStatement().setString(1, this.list.get(i).getName());
 				saveInfo.getPreStatement().setString(2, this.list.get(i).getAddress());
-				saveInfo.getPreStatement().setInt(3, Integer.parseInt(s));
+				saveInfo.getPreStatement().setString(3, s);
 				
 				saveInfo.getPreStatement().executeUpdate();
 				this.success = true;
-				saveInfo.closeState();
 
 				//System.out.println(Integer.parseInt(s));
 			}
-            catch (SQLException e) {
+		saveInfo.closeState();
+		}
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		}
-		
 	}
 }

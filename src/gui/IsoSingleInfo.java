@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.ColumnConstraints;
@@ -67,7 +68,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 				|| (!this.daxetnghiem.isSelected() && !this.chuaxetnghiem.isSelected()) || (!this.canhan.isSelected() && !this.hogiadinh.isSelected())) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Notification!");
-	        alert.setContentText("Hay dien day du cac thong tin truoc khi luu!");
+	        alert.setContentText("Hãy điền đầy đủ các thông tin trước khi lưu!");
 	        alert.showAndWait();
 	        
 	        return;
@@ -76,7 +77,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 		if (this.taptrung.isSelected() && (this.diadiem.getText() == null || this.diadiem.getText().equals(""))) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Notification!");
-	        alert.setContentText("Cho biet dia diem cach ly tap trung!");
+	        alert.setContentText("Cho biết địa điểm cách ly tập trung!");
 	        alert.showAndWait();
 	        
 	        return;
@@ -91,7 +92,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 			if (!rs.next()) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 		        alert.setTitle("Error!");
-		        alert.setContentText("Ban chua dang ki thong tin vao he thong!");
+		        alert.setContentText("Bạn chưa đăng kí với hệ thống!");
 		        alert.showAndWait();
 		        
 		        return;
@@ -103,7 +104,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 			saveInfo.getPreStatement().setString(2, this.muc);
 			
 			if (this.tainha.isSelected())
-				saveInfo.getPreStatement().setString(3, "Tai nha");
+				saveInfo.getPreStatement().setString(3, "Tại Nhà");
 			else saveInfo.getPreStatement().setString(3, this.diadiem.getText());
 			
 			SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
@@ -125,7 +126,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 					saveInfo.getPreStatement().setString(2, this.muc);
 					
 					if (this.tainha.isSelected())
-						saveInfo.getPreStatement().setString(3, "Tai nha");
+						saveInfo.getPreStatement().setString(3, "Tại Nhà");
 					else saveInfo.getPreStatement().setString(3, this.diadiem.getText());
 					
 					SimpleDateFormat dff = new SimpleDateFormat("MM/dd/yyyy");
@@ -143,7 +144,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;
@@ -159,7 +160,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 				|| (!this.daxetnghiem.isSelected() && !this.chuaxetnghiem.isSelected()) || (!this.canhan.isSelected() && !this.hogiadinh.isSelected())) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Notification!");
-	        alert.setContentText("Hay dien day du cac thong tin truoc khi luu!");
+	        alert.setContentText("Hãy điền đầy đủ thông tin trước khi lưu!");
 	        alert.showAndWait();
 	        
 	        return false;
@@ -168,7 +169,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 		if (this.taptrung.isSelected() && (this.diadiem.getText() == null || this.diadiem.getText().equals(""))) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Notification!");
-	        alert.setContentText("Cho biet dia diem cach ly tap trung!");
+	        alert.setContentText("Cho biết địa điểm cách ly tập trung!");
 	        alert.showAndWait();
 	        
 	        return false;
@@ -183,7 +184,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 			if (!rs.next()) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 		        alert.setTitle("Error!");
-		        alert.setContentText("Ban chua dang ki thong tin vao he thong!");
+		        alert.setContentText("Bạn chưa đăng kí với hệ thống!");
 		        alert.showAndWait();
 		        
 		        return false;
@@ -194,7 +195,7 @@ public class IsoSingleInfo extends GridPane implements Info{
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return false;
@@ -241,20 +242,20 @@ public class IsoSingleInfo extends GridPane implements Info{
 		this.setAlignment(Pos.CENTER);
 		
 		this.add(setLabel(this.cccd_label, "CCCD"), 0, 0, 1, 1);
-		this.add(setLabel(this.cachlytheo_label, "Cach ly theo"), 0, 2, 1, 1);
-		this.add(setLabel(this.mucdo_label, "Muc do"), 0, 4, 1, 1);
-		this.add(setLabel(this.ngaybatdau_label, "Ngay bat dau"), 2, 4, 1, 1);
-		this.add(setLabel(this.diadiem_label, "Cach ly tai"), 0, 6, 1, 1);
-		this.add(setLabel(this.xetnghiem_label, "Xet nghiem"), 0, 8, 1, 1);
-		this.add(setLabel(this.tiepxuc_label, "Tiep xuc gan?"), 0, 10, 1, 1);
+		this.add(setLabel(this.cachlytheo_label, "Cách ly theo"), 0, 2, 1, 1);
+		this.add(setLabel(this.mucdo_label, "Mức độ"), 0, 4, 1, 1);
+		this.add(setLabel(this.ngaybatdau_label, "Ngày bắt đầu"), 2, 4, 1, 1);
+		this.add(setLabel(this.diadiem_label, "Cách ly tại"), 0, 6, 1, 1);
+		this.add(setLabel(this.xetnghiem_label, "Xét nghiệm?"), 0, 8, 1, 1);
+		this.add(setLabel(this.tiepxuc_label, "Tiếp xúc gần"), 0, 10, 1, 1);
 		
 		this.cccd = new TextField();
 		this.cccd.setStyle("-fx-font-weight: bold;");
 		this.cccd.setMaxSize(400, 1);
 		this.add(this.cccd, 1, 0, 2, 1);
 		
-		this.canhan = new RadioButton("Ca nhan");
-		this.hogiadinh = new RadioButton("Ca gia dinh");
+		this.canhan = new RadioButton("Cá nhân");
+		this.hogiadinh = new RadioButton("Cả gia đình");
 		
 		ToggleGroup group3 = new ToggleGroup();
 		this.canhan.setToggleGroup(group3);
@@ -282,18 +283,28 @@ public class IsoSingleInfo extends GridPane implements Info{
 		this.ngaybatdau.setStyle("-fx-font-weight: bold;");
 		this.add(this.ngaybatdau, 3, 4, 1, 1);
 		
-		this.tainha = new RadioButton("Tai gia dinh");
-		this.taptrung = new RadioButton("Noi tap trung");
+		this.tainha = new RadioButton("Tại gia đình");
+		this.taptrung = new RadioButton("Nơi tập trung");
 		
 		ToggleGroup group1 = new ToggleGroup();
 		this.tainha.setToggleGroup(group1);
 		this.taptrung.setToggleGroup(group1);
 		
+		group1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+	           @Override
+	           public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+	               if (group1.getSelectedToggle() != null) {
+	                   RadioButton button = (RadioButton) group1.getSelectedToggle();
+	                   if (button == taptrung) setDiaDiem();
+	               }
+	           }
+	       });
+		
 		this.add(this.tainha, 1, 6, 1, 1);
 		this.add(this.taptrung, 2, 6, 1, 1);
 		
-		this.daxetnghiem = new RadioButton("Da xet nghiem");
-		this.chuaxetnghiem = new RadioButton("Chua xet nghiem");
+		this.daxetnghiem = new RadioButton("Đã xét nghiệm");
+		this.chuaxetnghiem = new RadioButton("Chưa xét nghiệm");
 		
 		ToggleGroup group2 = new ToggleGroup();
 		this.daxetnghiem.setToggleGroup(group2);
@@ -302,9 +313,15 @@ public class IsoSingleInfo extends GridPane implements Info{
 		this.add(this.daxetnghiem, 1, 8, 1, 1);
 		this.add(this.chuaxetnghiem, 2, 8, 1, 1);
 		
-		this.tiepxuc = new CheckBox("Tiep xuc voi nhieu nguoi?");
+		this.tiepxuc = new CheckBox("Tiếp xúc với nhiều người?");
 		this.add(this.tiepxuc, 1, 10, 1, 1);
 		
+	}
+	private void setDiaDiem()
+	{
+		this.diadiem = new TextField();
+		this.diadiem.setMaxSize(300, 1);
+		this.add(this.diadiem, 3, 6, 1, 1);
 	}
 	
 	public boolean getTiepxuc()

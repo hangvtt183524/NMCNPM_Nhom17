@@ -59,31 +59,31 @@ public class ResultTestForm extends FormFunction{
         	this.getRowConstraints().add(rowConst);
         }
 		//this.setGridLinesVisible(true);
-		
+		this.setColorLabel("Ghi nhận thông tin xét nghiệm");
 		this.add(this.color, 0, 1, 7, 3);
 		
-		this.add(setLabel(this.searchLb, "Nhap so CCCD"), 1, 5, 1, 1);
+		this.add(setLabel(this.searchLb, "Nhập số CCCD"), 1, 5, 1, 1);
 
 		this.searchTxt = new TextField();
 		this.searchTxt.setStyle("-fx-font-weight: bold;");
 		this.searchTxt.setStyle("-fx-font-weight: bold;");
 		this.add(this.searchTxt, 2, 5, 1, 1);
 		
-		this.searchBtn = new Button("Search");
+		this.searchBtn = new Button("Tìm kiếm");
 		this.searchBtn.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"
 				+ "-fx-font-weight: bold;");
 		this.searchBtn.setMaxSize(100.0, 35.0);
 		this.add(this.searchBtn, 3, 5, 2, 1);
 		
-		this.addBtn = new Button("Add");
+		this.addBtn = new Button("Thêm mới");
 		this.addBtn.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"
 				+ "-fx-font-weight: bold;");
 		this.addBtn.setMaxSize(100.0, 35.0);
 		this.add(this.addBtn, 1, 6, 1, 1);
 		
-		this.saveBtn = new Button("Save");
+		this.saveBtn = new Button("Lưu");
 		this.saveBtn.setMaxSize(100.0, 35.0);
 		
 		setAddButtonEventHandle();
@@ -92,7 +92,10 @@ public class ResultTestForm extends FormFunction{
 	
 	private void setSaveButton()
 	{
-		this.saveBtn = new Button("Save");
+		this.saveBtn = new Button("Lưu");
+		this.saveBtn.setStyle("-fx-background-color: #7579e7;"
+				+ "-fx-text-fill: white;"
+				+ "-fx-font-weight: bold;");
 		this.saveBtn.setMaxSize(100.0, 35.0);
 		setSaveButtonEventHandle();
 		this.saveBtn.setDisable(false);
@@ -159,7 +162,7 @@ public class ResultTestForm extends FormFunction{
 				   if (searchTxt.getText() == null || searchTxt.getText().equals("")) {
 					   Alert alert = new Alert(AlertType.INFORMATION);
 				        alert.setTitle("Message!");
-				        alert.setContentText("Hay nhap so CCCD!");
+				        alert.setContentText("Hãy nhập số CCCD!");
 				        alert.showAndWait();
 				        return;
 				   }

@@ -71,9 +71,9 @@ public class HealthInfo extends GridPane implements Info{
 		//this.setGridLinesVisible(true);
 		
 		this.add(setLabel(this.ten_label, "CCCD"), 0, 0, 1, 1);
-		this.add(setLabel(this.tinhtrang_label, "Tinh Trang"), 0, 2, 1, 1);
-		this.add(setLabel(this.bieuhien_label, "Bieu Hien"), 0, 4, 1, 1);
-		this.add(setLabel(this.ngay, "Ngay Ghi Nhan"), 0, 8, 1, 1);
+		this.add(setLabel(this.tinhtrang_label, "Tình Trạng"), 0, 2, 1, 1);
+		this.add(setLabel(this.bieuhien_label, "Biểu Hiện"), 0, 4, 1, 1);
+		this.add(setLabel(this.ngay, "Ngày Ghi Nhận"), 0, 8, 1, 1);
 		
 		this.cert = new TextField();
 		this.cert.setStyle("-fx-font-weight: bold;");
@@ -82,11 +82,11 @@ public class HealthInfo extends GridPane implements Info{
 		
 		ToggleGroup group = new ToggleGroup();
 		
-		this.tinhtrang_bth = new RadioButton("Binh Thuong");
+		this.tinhtrang_bth = new RadioButton("Bình Thường");
 		this.tinhtrang_bth.setStyle("-fx-font-weight: bold;");
 		this.tinhtrang_bth.setToggleGroup(group);
  
-		tinhtrang_kbth = new RadioButton("Bat Thuong");
+		tinhtrang_kbth = new RadioButton("Bất Thường");
 		this.tinhtrang_kbth.setStyle("-fx-font-weight: bold;");
 		tinhtrang_kbth.setToggleGroup(group);
 		
@@ -120,14 +120,14 @@ public class HealthInfo extends GridPane implements Info{
 		if (this.cert == null || this.cert.getText() == null ||(!this.tinhtrang_bth.isSelected() && !this.tinhtrang_kbth.isSelected()) || this.ngayghinhan == null || this.ngayghinhan.getValue() == null){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Notification!");
-			alert.setContentText("Hay dien day du cac thong tin truoc khi luu!");
+			alert.setContentText("Hãy điền đầy đủ thông tin trước khi lưu!");
 			alert.showAndWait();
 			return;
 		}
 		if (this.tinhtrang_kbth.isSelected() && (this.bieuhien.getText() == null || this.bieuhien.getText().equals(""))){
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Notification!");
-			alert.setContentText("Cho biet thong tin suc khoe cu the!");
+			alert.setContentText("Cho biết thông tin sức khỏe cụ thể!");
 			alert.showAndWait();
 			return;
 		}
@@ -140,7 +140,7 @@ public class HealthInfo extends GridPane implements Info{
 			if (!rs.next()) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 		        alert.setTitle("Error!");
-				alert.setContentText("Ban chua dang ki thong tin vao he thong!");
+				alert.setContentText("Bạn chưa đăng kí với hệ thống!");
 				alert.showAndWait();
 				return;
 			}
@@ -166,7 +166,7 @@ public class HealthInfo extends GridPane implements Info{
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-			alert.setContentText("Khong the thuc hien yeu cau!");
+			alert.setContentText("Không thể thực hiện yêu cầu!");
 			alert.showAndWait();
 			return;
 		} catch (ParseException e) {

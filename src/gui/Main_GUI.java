@@ -6,12 +6,18 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -22,7 +28,9 @@ public class Main_GUI extends Application{
 	private GridPane root;
 	private GridPane navigate;
 	private GridPane function;
-	
+	private GridPane login;
+	private Button login_btn;
+	private GridPane getin;
 	
 	private Label person;
 	private Label health;
@@ -30,7 +38,9 @@ public class Main_GUI extends Application{
 	private Label isolation;
 	private Label test;
 	private Label view;
-	private Label logout;
+	
+	private TextField username;
+	private PasswordField password;
 	
 	private PersonForm personForm;
 	private HealthForm healthForm;
@@ -43,7 +53,7 @@ public class Main_GUI extends Application{
 	private EventHandler<MouseEvent> eventHandler2;
 	private EventHandler<MouseEvent> eventHandler3;
 	
-	private Label pre;
+	private Label wrong;
 	
 	public static void main(String[] args)
 	{
@@ -58,12 +68,111 @@ public class Main_GUI extends Application{
 		setRootPane();
 		
 		Scene scene = new Scene(root, 1500, 850);
+		this.login = new GridPane();
+		Scene login_form = new Scene(login, 1000, 500);
+		
+		this.login_btn = new Button("Đăng nhập");
+		
+		this.wrong = new Label("Tên đăng nhập hoặc mật khẩu không đúng!");
+		this.wrong.setAlignment(Pos.CENTER);
+		this.wrong.setStyle("-fx-background-color: #c9cbff;"
+				+ "-fx-font-weight: bold;");
+		this.wrong.setMaxSize(420, 200);
+		setLoginPane();
+		this.login_btn.setOnAction(e -> {
+			if (username.getText() != null && username.getText().equals("NMCNPM") && password.getText() != null && password.getText().equals("Nhom17"))
+				{
+					primaryStage.setScene(scene);
+				}
+			else {
+				getin.add(wrong, 1, 1, 1, 1);
+			}
+		}); 
 		 
         primaryStage.setTitle("QL_Covid19_NMCNPM_Nhom17");
-        primaryStage.setScene(scene);
+        primaryStage.setScene(login_form);
         primaryStage.setResizable(false);
+        primaryStage.setX(200);
+        primaryStage.setY(50);
         primaryStage.show();
 		
+	}
+	
+	private void setLoginPane()
+	{
+		ColumnConstraints column1 = new ColumnConstraints();
+		column1.setPercentWidth(40.0);
+		this.login.getColumnConstraints().add(column1);
+		ColumnConstraints column2 = new ColumnConstraints();
+		column2.setPercentWidth(60.0);
+		this.login.getColumnConstraints().add(column2);
+		
+		RowConstraints row1 = new RowConstraints();
+		row1.setPercentHeight(60.0);
+		this.login.getRowConstraints().add(row1);
+		RowConstraints row2 = new RowConstraints();
+		row2.setPercentHeight(40.0);
+		this.login.getRowConstraints().add(row2);
+		
+		this.login.setStyle("-fx-background-color: #7579e7;");
+		//this.login.setGridLinesVisible(true);
+		Label label_title = new Label("Quản lý Covid 19");
+		label_title.setStyle("-fx-background-color: #7579e7;"
+				+ "-fx-text-fill: white;"
+				+ "-fx-font-weight: bold;"
+				+ "-fx-font-size: 40;");
+		label_title.setAlignment(Pos.TOP_CENTER);
+		label_title.setMaxSize(500, 500);
+		
+		Image img = new Image(getClass().getResourceAsStream("/gui/note.gif"));
+	    Circle cir2 = new Circle(250,200,80); 
+	    cir2.setStroke(Color.SEAGREEN); 
+	    cir2.setFill(new ImagePattern(img, 150, 120, 195, 150, false));
+	    cir2.setTranslateX(110);
+	      
+	    this.getin = new GridPane();
+	    this.getin.setStyle("-fx-background-color: white;");
+	    this.login.add(this.getin, 1, 0, 1, 2);
+	    
+	    ColumnConstraints column3 = new ColumnConstraints();
+		column3.setPercentWidth(15);
+		ColumnConstraints column4 = new ColumnConstraints();
+		column4.setPercentWidth(70.0);
+		ColumnConstraints column5 = new ColumnConstraints();
+		column5.setPercentWidth(15);
+		this.getin.getColumnConstraints().addAll(column3, column4, column5);
+		
+		for (int i=0; i< 10; i++) {
+        	RowConstraints rowConst = new RowConstraints();
+        	rowConst.setPercentHeight(100/10);
+        	this.getin.getRowConstraints().add(rowConst);
+        }
+	    //this.getin.setGridLinesVisible(true);
+	    this.getin.setHgap(5);
+	    this.getin.setVgap(5);
+	    this.getin.setAlignment(Pos.CENTER);
+	    
+	    this.username = new TextField("Tên đăng nhập");
+	    this.username.setMaxSize(420, 200);
+	    this.username.setStyle("-fx-background-color: #a9a9a9 , #7579e7 , white;"
+	    		+ "    -fx-background-insets: 0 -1 -1 -1, -1 -1 -1 -1, 0 -1 3 -1;");
+	    this.password = new PasswordField();
+	    this.password.setMaxSize(420, 200);
+	    this.password.setStyle("-fx-background-color: #a9a9a9 , #7579e7 , white;"
+	    		+ "    -fx-background-insets: 0 -1 -1 -1, -1 -1 -1 -1, 0 -1 3 -1;");
+	    this.getin.add(this.username, 1, 3, 1, 1);
+	    this.getin.add(this.password, 1, 5, 1, 1);
+	    
+	    this.login_btn.setMaxSize(420, 200);
+	    this.login_btn.setStyle("-fx-background-color: #7579e7;"
+				+ "-fx-text-fill: white;"
+				+ "-fx-font-weight: bold;");
+	    this.getin.add(this.login_btn, 1, 7, 1, 1);
+	    this.login.setAlignment(Pos.BASELINE_CENTER);
+	      
+	    this.login.add(cir2, 0, 0, 1, 1);
+	     
+		this.login.add(label_title, 0, 1, 1, 1);
 	}
 	
 	// design main pane
@@ -101,6 +210,13 @@ public class Main_GUI extends Application{
         ColumnConstraints colConst = new ColumnConstraints();
         colConst.setPercentWidth(100.0);
         this.navigate.getColumnConstraints().add(colConst);
+        
+        this.person = new Label("Dân cư");
+        this.health = new Label("Sức khỏe");
+        this.movement = new Label("Di chuyển");
+        this.test = new Label("Xét nghiệm");
+        this.view = new Label("Thống kê");
+        this.isolation = new Label("Cách ly");
         
         this.navigate.add(setLabel(this.person), 0, 1, 1, 1);
         this.navigate.add(setLabel(this.movement), 0, 2, 1, 1);
@@ -198,7 +314,6 @@ public class Main_GUI extends Application{
 		label.setMaxSize(390.0, 150.0);
 		label.setPrefSize(100.0, 75.0);
 		
-		handleHoverLabel(label);
 		
 		return label;
 	}

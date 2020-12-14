@@ -46,9 +46,10 @@ public class MovementForm extends FormFunction{
 		this.setHgap(10);
 		this.setVgap(5);
 		//this.setGridLinesVisible(true);
+		this.setColorLabel("Khai báo lịch trình di chuyển");
 		this.add(this.color, 0, 1, 6, 4);
 		
-		this.addBtn = new Button("Add");
+		this.addBtn = new Button("Thêm mới");
 		this.addBtn.setMaxSize(100.0, 35.0);
 		this.addBtn.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"
@@ -58,7 +59,7 @@ public class MovementForm extends FormFunction{
 		//this.add(this.saveBtn, 4, 20, 1, 2);
 		//this.add(this.next, 3, 20, 1, 2);
 		
-		this.saveBtn = new Button("Save");
+		this.saveBtn = new Button("Lưu");
 		
 		setAddButtonEventHandle();
 	}
@@ -72,7 +73,7 @@ public class MovementForm extends FormFunction{
 
 	private void setSaveAndNextButton()
 	{
-		this.saveBtn = new Button("Save");
+		this.saveBtn = new Button("Lưu");
 		this.saveBtn.setMaxSize(100.0, 35.0);
 		this.saveBtn.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"

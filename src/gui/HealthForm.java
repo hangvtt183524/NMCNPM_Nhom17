@@ -51,9 +51,10 @@ public class HealthForm extends FormFunction{
 		this.setVgap(5);
 		//this.setGridLinesVisible(true);
 		
+		this.setColorLabel("Khai báo thông tin sức khỏe");
 		this.add(this.color, 0, 1, 6, 4);
 		
-		this.addBtn = new Button("Add");
+		this.addBtn = new Button("Thêm mới");
 		this.addBtn.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"
 				+ "-fx-font-weight: bold;");

@@ -67,10 +67,10 @@ public class TestInfo extends GridPane implements Info{
 		//this.setGridLinesVisible(true);
 		
 		this.add(setLabel(this.name_label, "CCCD"), 0, 0, 1, 1);
-		this.add(setLabel(this.number_label, "Lan thu"), 0, 2, 1, 1);
-		this.add(setLabel(this.time_label, "Thoi gian"), 0, 4, 1, 1);
-		this.add(setLabel(this.method_label, "Phuong phap"), 0, 6, 1, 1);
-		this.add(setLabel(this.result_label, "Ket qua"), 0, 8, 1, 1);
+		this.add(setLabel(this.number_label, "Lần thứ"), 0, 2, 1, 1);
+		this.add(setLabel(this.time_label, "Thời gian"), 0, 4, 1, 1);
+		this.add(setLabel(this.method_label, "Phương pháp"), 0, 6, 1, 1);
+		this.add(setLabel(this.result_label, "Kết quả"), 0, 8, 1, 1);
 		
 		this.cert = new TextField();
 		this.cert.setMaxSize(400, 1);
@@ -84,16 +84,16 @@ public class TestInfo extends GridPane implements Info{
 		this.add(this.time, 1, 4, 1, 1);
 		
 		this.method1 = new RadioButton("Test Nhanh");
-		this.method2 = new RadioButton("CDC");
+		this.method2 = new RadioButton("PCR");
 		ToggleGroup group_method = new ToggleGroup();
 		method1.setToggleGroup(group_method);
 		method2.setToggleGroup(group_method);
 		this.add(this.method1, 1, 6, 1, 1);
 		this.add(this.method2, 2, 6, 1, 1);
 		
-		this.result_neg = new RadioButton("Am Tinh");
-		this.result_pos = new RadioButton("Duong Tinh");
-		this.result_non = new RadioButton("Chua co ket qua");
+		this.result_neg = new RadioButton("Âm Tính");
+		this.result_pos = new RadioButton("Dương Tính");
+		this.result_non = new RadioButton("Chưa có kết quả");
 		ToggleGroup group_result = new ToggleGroup();
 		result_neg.setToggleGroup(group_result);
 		result_pos.setToggleGroup(group_result);
@@ -120,7 +120,7 @@ public class TestInfo extends GridPane implements Info{
 		{
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Notification!");
-	        alert.setContentText("Hay dien day du thong tin truoc khi luu!");
+	        alert.setContentText("Hãy điền đầy đủ thông tin trước khi lưu!");
 	        alert.showAndWait();
 	        
 	        return;
@@ -137,14 +137,14 @@ public class TestInfo extends GridPane implements Info{
 				if (rs.getInt("lan_thu") >= (int) this.number.getValue()) {
 					Alert alert = new Alert(AlertType.INFORMATION);
 			        alert.setTitle("Message!");
-			        alert.setContentText("Ban da duoc kiem tra " + rs.getInt("lan_thu") + " lan. Hay nhap so lon hon!");
+			        alert.setContentText("Bạn đã được kiểm tra " + rs.getInt("lan_thu") + " lần. Hãy nhập số lớn hơn!");
 			        alert.showAndWait();
 			        return;
 				}
 				else if (rs.getInt("lan_thu") < (int) this.number.getValue() - 1){
 					Alert alert = new Alert(AlertType.INFORMATION);
 			        alert.setTitle("Message!");
-			        alert.setContentText("Ban moi duoc kiem tra " + rs.getInt("lan_thu") + " lan. Hay nhap so tiep theo!");
+			        alert.setContentText("Bạn mới được kiểm tra " + rs.getInt("lan_thu") + " lần. Hãy nhập số tiếp theo!");
 			        alert.showAndWait();
 			        return;
 				}
@@ -152,12 +152,12 @@ public class TestInfo extends GridPane implements Info{
 					saveInfo.query_change("insert into quan_ly_kiem_tra (cccd, thoi_gian, hinh_thuc, ket_qua, lan_thu) values (?, ?, ?, ?, ?);");
 					saveInfo.getPreStatement().setString(1, this.cert.getText());
 					saveInfo.getPreStatement().setDate(2, new Date(this.time.getValue().getMonthValue(), this.time.getValue().getDayOfMonth(), this.time.getValue().getYear()));
-					if (this.method1.isSelected()) saveInfo.getPreStatement().setString(3, "Test nhanh");
-					else saveInfo.getPreStatement().setString(3, "CDC");
+					if (this.method1.isSelected()) saveInfo.getPreStatement().setString(3, "Test Nhanh");
+					else saveInfo.getPreStatement().setString(3, "PCR");
 					
-					if (this.method1.isSelected()) saveInfo.getPreStatement().setString(4, "Am tinh");
-					else if (this.method2.isSelected()) saveInfo.getPreStatement().setString(4, "Duong tinh");
-					else saveInfo.getPreStatement().setString(4, "Chua xac nhan");
+					if (this.result_neg.isSelected()) saveInfo.getPreStatement().setString(4, "Âm Tính");
+					else if (this.result_pos.isSelected()) saveInfo.getPreStatement().setString(4, "Dương Tính");
+					else saveInfo.getPreStatement().setString(4, "Chưa Xác Nhận");
 					
 					saveInfo.getPreStatement().setInt(5, (int)this.number.getValue());
 					saveInfo.getPreStatement().executeUpdate();
@@ -168,12 +168,12 @@ public class TestInfo extends GridPane implements Info{
 				saveInfo.query_change("insert into quan_ly_kiem_tra (cccd, thoi_gian, hinh_thuc, ket_qua, lan_thu) values (?, ?, ?, ?, ?);");
 				saveInfo.getPreStatement().setString(1, this.cert.getText());
 				saveInfo.getPreStatement().setDate(2, new Date(this.time.getValue().getMonthValue(), this.time.getValue().getDayOfMonth(), this.time.getValue().getYear()));
-				if (this.method1.isSelected()) saveInfo.getPreStatement().setString(3, "Test nhanh");
-				else saveInfo.getPreStatement().setString(3, "CDC");
+				if (this.method1.isSelected()) saveInfo.getPreStatement().setString(3, "Test Nhanh");
+				else saveInfo.getPreStatement().setString(3, "PCR");
 				
-				if (this.method1.isSelected()) saveInfo.getPreStatement().setString(4, "Am tinh");
-				else if (this.method2.isSelected()) saveInfo.getPreStatement().setString(4, "Duong tinh");
-				else saveInfo.getPreStatement().setString(4, "Chua xac nhan");
+				if (this.result_neg.isSelected()) saveInfo.getPreStatement().setString(4, "Âm Tính");
+				else if (this.result_pos.isSelected()) saveInfo.getPreStatement().setString(4, "Dương Tính");
+				else saveInfo.getPreStatement().setString(4, "Chưa Xác Nhận");
 				
 				saveInfo.getPreStatement().setInt(5, 1);
 				saveInfo.getPreStatement().executeUpdate();
@@ -185,7 +185,7 @@ public class TestInfo extends GridPane implements Info{
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;

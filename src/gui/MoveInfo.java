@@ -93,8 +93,8 @@ public class MoveInfo extends GridPane implements Info{
 		//this.setGridLinesVisible(true);
 		
 		this.add(setLabel(this.ten_label, "CCCD"), 0, 0, 1, 1);
-		this.add(setLabel(this.diadiem_label, "Vung dich di qua"), 0, 2, 1, 1);
-		this.add(setLabel(this.thoigian_label, "Ngay di"), 0, 4, 1, 1);
+		this.add(setLabel(this.diadiem_label, "Vùng dịch đi qua"), 0, 2, 1, 1);
+		this.add(setLabel(this.thoigian_label, "Ngày đi"), 0, 4, 1, 1);
 		
 		
 		this.cert = new TextField();
@@ -112,13 +112,10 @@ public class MoveInfo extends GridPane implements Info{
 		this.thoigian.setPromptText("mm-dd-yyyy");
 		this.add(this.thoigian, 1, 4, 2, 1);
 		
-		this.dicung = new CheckBox("Di cung nguoi than?");
+		this.dicung = new CheckBox("Đi cùng người thân?");
 		this.dicung.setStyle("-fx-font-size: 20;");
 		this.add(this.dicung, 1, 6, 1, 1);
-		
-		this.contact = new CheckBox("Tiep xuc voi nguoi khac?");
-		this.contact.setStyle("-fx-font-size: 20;");
-		this.add(this.contact, 1, 9, 1, 1);
+
 		this.id_people = new ArrayList<String>();
 		
 		checkBoxAddListener();
@@ -151,7 +148,7 @@ public class MoveInfo extends GridPane implements Info{
 			e.printStackTrace();
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Gap loi thi thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        return;
 		}
@@ -170,7 +167,7 @@ public class MoveInfo extends GridPane implements Info{
 			    	if ((cert.getText() == null || cert.getText().equals("")) && dicung.isSelected()) {
 			    		Alert alert = new Alert(AlertType.INFORMATION);
 				        alert.setTitle("Error!");
-				        alert.setContentText("Hay nhap so CCCD!");
+				        alert.setContentText("Hãy nhập số CCCD!");
 				        dicung.setSelected(false);
 				        alert.showAndWait();
 				        
@@ -200,7 +197,7 @@ public class MoveInfo extends GridPane implements Info{
 		if (this.cert.getText() == null || this.cert.getText().equals("") || this.diadiem.getText() == null || this.diadiem.getText().equals("") || this.thoigian.getValue() == null) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Message!");
-	        alert.setContentText("Hay dien day du thong tin can thiet!");
+	        alert.setContentText("Hãy điền đầy đủ thông tin cần thiết!");
 	        alert.showAndWait();
 	        return;
 		}
@@ -218,7 +215,7 @@ public class MoveInfo extends GridPane implements Info{
 			else {
 				Alert alert = new Alert(AlertType.INFORMATION);
 		        alert.setTitle("Error!");
-		        alert.setContentText("Gap loi thi thuc hien yeu cau!");
+		        alert.setContentText("Không thể thực hiện yêu cầu!");
 		        alert.showAndWait();
 		        return;
 			}
@@ -238,7 +235,7 @@ public class MoveInfo extends GridPane implements Info{
 		}catch (SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Gap loi thi thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;

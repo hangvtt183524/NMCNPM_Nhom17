@@ -46,9 +46,9 @@ public class ViewMoveInfo extends GridPane{
 		
 		this.table = new TableView<Movement>();
 		TableColumn<Movement, String> sttCol = new TableColumn<Movement, String>("STT");
-		TableColumn<Movement, String> nameCol = new TableColumn<Movement, String>("Ho va Ten");
-		TableColumn<Movement, String> addressCol = new TableColumn<Movement, String>("Dia Chi");
-		TableColumn<Movement, String> timeCol = new TableColumn<Movement, String>("Thoi Gian Di");
+		TableColumn<Movement, String> nameCol = new TableColumn<Movement, String>("Họ và Tên");
+		TableColumn<Movement, String> addressCol = new TableColumn<Movement, String>("Địa Chỉ");
+		TableColumn<Movement, String> timeCol = new TableColumn<Movement, String>("Thời Gian Đi");
 		
 		sttCol.setCellValueFactory(new PropertyValueFactory<>("Stt"));
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("Ten"));
@@ -100,7 +100,7 @@ public class ViewMoveInfo extends GridPane{
 		} catch (SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        return;
 		}

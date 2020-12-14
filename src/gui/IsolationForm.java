@@ -56,23 +56,23 @@ public class IsolationForm extends FormFunction{
 		this.setColorLabel("Khai báo thông tin cách ly");
 		this.add(this.color, 0, 1, 8, 3);
 		
-		this.addBtn = new Button("Add");
+		this.addBtn = new Button("Thêm mới");
 		this.addBtn.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"
 				+ "-fx-font-weight: bold;");
 		this.addBtn.setMaxSize(100.0, 35.0);
 		this.add(this.addBtn, 1, 5, 1, 1);
 		
-		this.next = new Button("next");
-		this.saveBtn = new Button("Save");
+		this.next = new Button("Tiếp");
+		this.saveBtn = new Button("Lưu");
 
 		setAddButtonEventHandle();	
 	}
 	
 	private void setNextAndSaveSingleButton()
 	{
-		this.next = new Button("next");
-		this.saveBtn = new Button("Save");
+		this.next = new Button("Tiếp");
+		this.saveBtn = new Button("Lưu");
 		
 		this.next.setStyle("-fx-background-color: #7579e7;"
 				+ "-fx-text-fill: white;"

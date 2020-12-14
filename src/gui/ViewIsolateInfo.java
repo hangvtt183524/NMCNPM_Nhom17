@@ -97,13 +97,13 @@ public class ViewIsolateInfo extends GridPane implements Info{
 		
 		this.table = new TableView<Isolation>();
 		TableColumn<Isolation, String> sttCol = new TableColumn<Isolation, String>("STT");
-		TableColumn<Isolation, String> nameCol = new TableColumn<Isolation, String>("Ho va Ten");
+		TableColumn<Isolation, String> nameCol = new TableColumn<Isolation, String>("Họ và Tên");
 		TableColumn<Isolation, String> cccdCol = new TableColumn<Isolation, String>("CCCD");
-		TableColumn<Isolation, String> mucCol = new TableColumn<Isolation, String>("Muc do");
-		TableColumn<Isolation, String> diadiemCol = new TableColumn<Isolation, String>("Dia diem");
-		TableColumn<Isolation, String> ngayCol = new TableColumn<Isolation, String>("Ngay bat dau");
-		TableColumn<Isolation, Boolean> xetnghiemCol = new TableColumn<Isolation, Boolean>("Da xet nghiem");
-		TableColumn<Isolation, Boolean> hethanCol = new TableColumn<Isolation, Boolean>("Da het han");
+		TableColumn<Isolation, String> mucCol = new TableColumn<Isolation, String>("Mức Độ");
+		TableColumn<Isolation, String> diadiemCol = new TableColumn<Isolation, String>("Địa Điểm");
+		TableColumn<Isolation, String> ngayCol = new TableColumn<Isolation, String>("Ngày Bắt Đầu");
+		TableColumn<Isolation, Boolean> xetnghiemCol = new TableColumn<Isolation, Boolean>("Đã xét nghiệm");
+		TableColumn<Isolation, Boolean> hethanCol = new TableColumn<Isolation, Boolean>("Đã hết hạn");
 		TableColumn<Isolation, String> moreCol = new TableColumn<Isolation, String>("");
 		
 		sttCol.setCellValueFactory(new PropertyValueFactory<>("STT"));
@@ -115,6 +115,16 @@ public class ViewIsolateInfo extends GridPane implements Info{
 		xetnghiemCol.setCellValueFactory(new PropertyValueFactory<>("Test"));
 		hethanCol.setCellValueFactory(new PropertyValueFactory<>("OutDate"));
 		moreCol.setCellValueFactory(new PropertyValueFactory<>("More"));
+		
+		sttCol.setStyle("-fx-alignment: center;");
+		nameCol.setStyle("-fx-alignment: center;");
+		cccdCol.setStyle("-fx-alignment: center;");
+		mucCol.setStyle("-fx-alignment: center;");
+		diadiemCol.setStyle("-fx-alignment: center;");
+		ngayCol.setStyle("-fx-alignment: center;");
+		xetnghiemCol.setStyle("-fx-alignment: center;");
+		hethanCol.setStyle("-fx-alignment: center;");
+		moreCol.setStyle("-fx-alignment: center;");
 		
 		sttCol.setMinWidth(38);
 		sttCol.setMaxWidth(38);
@@ -205,7 +215,6 @@ public class ViewIsolateInfo extends GridPane implements Info{
 				
 				
 		this.list = FXCollections.observableArrayList();
-		Isolation check = new Isolation("1");
 		getIsolationList();
 		this.table.setItems(this.list);
 		setMoreButtonEventHandle();
@@ -254,7 +263,7 @@ public class ViewIsolateInfo extends GridPane implements Info{
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;
@@ -327,7 +336,7 @@ RecordInformation saveInfo = new RecordInformation();
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;

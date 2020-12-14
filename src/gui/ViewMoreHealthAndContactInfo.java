@@ -80,35 +80,43 @@ public class ViewMoreHealthAndContactInfo extends GridPane implements Info{
 		
 		this.contact = new TableView<Contact>();
 		TableColumn<Contact, String> sttCol = new TableColumn<Contact, String>("STT");
-		TableColumn<Contact, String> nameCol = new TableColumn<Contact, String>("Name");
-		TableColumn<Contact, String> addressCol = new TableColumn<Contact, String>("Address");
+		TableColumn<Contact, String> nameCol = new TableColumn<Contact, String>("Họ và Tên");
+		TableColumn<Contact, String> addressCol = new TableColumn<Contact, String>("Địa Chỉ");
 		
 		sttCol.setCellValueFactory(new PropertyValueFactory<>("STT"));
 		nameCol.setCellValueFactory(new PropertyValueFactory<>("Name"));
 		addressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
 		
-		nameCol.setMinWidth(300);
-		nameCol.setMaxWidth(300);
+		nameCol.setMinWidth(220);
+		nameCol.setMaxWidth(220);
 		
-		addressCol.setMinWidth(350);
-		addressCol.setMaxWidth(350);
+		addressCol.setMinWidth(230);
+		addressCol.setMaxWidth(230);
 		
-		sttCol.setMinWidth(80);
-		sttCol.setMaxWidth(80);
+		sttCol.setMinWidth(60);
+		sttCol.setMaxWidth(60);
+		
+		nameCol.setStyle("-fx-alignment: center;");
+		addressCol.setStyle("-fx-alignment: center;");
+		sttCol.setStyle("-fx-alignment: center;");
 		
 		this.contact.getColumns().addAll(sttCol, nameCol, addressCol);
 		this.contact.setEditable(false);
 		
 		this.health = new TableView<Health>();
 		TableColumn<Health, String> sttCol2 = new TableColumn<Health, String>("STT");
-		TableColumn<Health, String> tinhtrang = new TableColumn<Health, String>("Tinh Trang");
-		TableColumn<Health, String> bieuhien = new TableColumn<Health, String>("Bieu hien");
-		TableColumn<Health, String> ngayghinhan = new TableColumn<Health, String>("Ngay ghi nhan");
+		TableColumn<Health, String> tinhtrang = new TableColumn<Health, String>("Tình Trạng");
+		TableColumn<Health, String> bieuhien = new TableColumn<Health, String>("Biểu Hiện");
+		TableColumn<Health, String> ngayghinhan = new TableColumn<Health, String>("Ngày Ghi Nhận");
 		
 		sttCol2.setCellValueFactory(new PropertyValueFactory<>("STT"));
 		tinhtrang.setCellValueFactory(new PropertyValueFactory<>("Tinh_trang"));
 		ngayghinhan.setCellValueFactory(new PropertyValueFactory<>("Ngay_ghi_nhan"));
 		bieuhien.setCellValueFactory(new PropertyValueFactory<>("Bieu_hien"));
+		sttCol2.setStyle("-fx-alignment: center;");
+		tinhtrang.setStyle("-fx-alignment: center;");
+		ngayghinhan.setStyle("-fx-alignment: center;");
+		bieuhien.setStyle("-fx-alignment: center;");
 		
 		sttCol2.setMinWidth(60);
 		sttCol2.setMaxWidth(60);
@@ -158,7 +166,7 @@ public class ViewMoreHealthAndContactInfo extends GridPane implements Info{
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;
@@ -189,7 +197,7 @@ public class ViewMoreHealthAndContactInfo extends GridPane implements Info{
 		catch(SQLException e) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Error!");
-	        alert.setContentText("Khong the thuc hien yeu cau!");
+	        alert.setContentText("Không thể thực hiện yêu cầu!");
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;

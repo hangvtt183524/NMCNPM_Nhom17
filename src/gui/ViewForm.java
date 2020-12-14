@@ -66,12 +66,12 @@ public class ViewForm extends FormFunction{
 		this.setColorLabel("Thống kê tình hình dịch bệnh hàng tuần");
 		this.add(this.color, 0, 1, 6, 3);
 		
-		this.menu = FXCollections.observableArrayList("Dia diem", "Ket qua xet nghiem", "Cach ly");
+		this.menu = FXCollections.observableArrayList("Địa điểm", "Kết quả xét nghiệm", "Cách ly");
 		this.choiceBox = new ChoiceBox<String>(menu);
 		
 		this.add(this.choiceBox, 1, 5, 1, 1);
 		
-		this.search = new TextField("Thong tin can tim");
+		this.search = new TextField("Thông tin cần tìm");
 		this.add(this.search, 2, 5, 1, 1);
 		
 		this.search_btn = new Button("Search");
@@ -139,7 +139,7 @@ public class ViewForm extends FormFunction{
 		EventHandler eventHandler = new EventHandler<MouseEvent>() { 
 			   @Override 
 			   public void handle(MouseEvent e) {
-				   if (select != null && select.equals("Ket qua xet nghiem")) {
+				   if (select != null && select.equals("Kết quả xét nghiệm")) {
 					   if (viewIsolation != null) {
 							removeComponent(viewIsolation);
 							removeComponent(saveBtn);
@@ -147,7 +147,7 @@ public class ViewForm extends FormFunction{
 					   if (viewMove != null) removeComponent(viewMove);
 					   getViewResult();
 				   }
-				   else if (select != null && select.equals("Dia diem") && !search.getText().equals("") && !search.getText().equals("Thong tin can tim")) {
+				   else if (select != null && select.equals("Địa điểm") && !search.getText().equals("") && !search.getText().equals("Thông tin cần tìm")) {
 						
 							if (viewResult != null) {
 								removeComponent(viewResult);
@@ -159,7 +159,7 @@ public class ViewForm extends FormFunction{
 							}
 							getViewMove();
 					}
-				   else if (select != null && select.equals("Cach ly")) {
+				   else if (select != null && select.equals("Cách ly")) {
 					   if (viewResult != null)
 							removeComponent(viewResult);
 						if (viewMove != null)

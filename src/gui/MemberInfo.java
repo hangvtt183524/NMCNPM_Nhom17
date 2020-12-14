@@ -72,12 +72,12 @@ public class MemberInfo extends GridPane implements Info{
 		this.getRowConstraints().add(row1);
 		
 		this.table = new TableView<Person>();
-	      TableColumn<Person, String> userNameCol   = new TableColumn<Person, String>("Name");
-	      TableColumn<Person, String> dateOfBirthCol = new TableColumn<Person, String>("Date Of Birth");
-	      TableColumn<Person, String> address = new TableColumn<Person, String>("Address");
-	      TableColumn<Person, String> certCol = new TableColumn<Person, String>("Cert");      
-	      TableColumn<Person, Boolean> genderCol = new TableColumn<Person, Boolean>("Female");
-	      TableColumn<Person, String> orderCol = new TableColumn<Person, String>("Order");
+	      TableColumn<Person, String> userNameCol   = new TableColumn<Person, String>("Họ và Tên");
+	      TableColumn<Person, String> dateOfBirthCol = new TableColumn<Person, String>("Ngày Sinh");
+	      TableColumn<Person, String> address = new TableColumn<Person, String>("Địa Chỉ");
+	      TableColumn<Person, String> certCol = new TableColumn<Person, String>("CCCD");      
+	      TableColumn<Person, Boolean> genderCol = new TableColumn<Person, Boolean>("Là Nữ");
+	      TableColumn<Person, String> orderCol = new TableColumn<Person, String>("STT");
 	      
 	      TableColumn<Person, String> dayCol  = new TableColumn<Person, String>("Day");
 	      TableColumn<Person, String> monthCol  = new TableColumn<Person, String>("Month");
@@ -106,8 +106,8 @@ public class MemberInfo extends GridPane implements Info{
 	      orderCol.setMaxWidth(50);
 	      
 	      // bat su kien thay doi FullName
-	      userNameCol.setMinWidth(250);
-	      userNameCol.setMaxWidth(250);
+	      userNameCol.setMinWidth(220);
+	      userNameCol.setMaxWidth(220);
 	      userNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 	      userNameCol.setOnEditCommit(e -> {
 	    	  e.getTableView().getItems().get(e.getTablePosition().getRow()).setFullName(e.getNewValue());
@@ -122,16 +122,12 @@ public class MemberInfo extends GridPane implements Info{
 	      });
 	      
 	      // bat su kien thay doi dia chi
-	      address.setMinWidth(300);
-	      address.setMaxWidth(300);
-	      address.setCellFactory(TextFieldTableCell.forTableColumn());
-	      address.setOnEditCommit(e -> {
-	    	  e.getTableView().getItems().get(e.getTablePosition().getRow()).setAddress(e.getNewValue());
-	      });
+	      address.setMinWidth(245);
+	      address.setMaxWidth(245);
 	      
 	      //bat su kien danh dau gioi tinh la nu
-	      genderCol.setMinWidth(88);
-	      genderCol.setMaxWidth(88);
+	      genderCol.setMinWidth(85);
+	      genderCol.setMaxWidth(85);
 	      genderCol.setCellValueFactory(new Callback<CellDataFeatures<Person, Boolean>, ObservableValue<Boolean>>() {
 	    	  
 	           @Override
@@ -179,7 +175,7 @@ public class MemberInfo extends GridPane implements Info{
 	      // bat su kien chon thang
 	       monthCol.setMinWidth(100);
 	       monthCol.setMaxWidth(100);
-	       ObservableList<String> monthList = FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+	       ObservableList<String> monthList = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
 	       monthCol.setCellValueFactory(new Callback<CellDataFeatures<Person, String>, ObservableValue<String>>() {
 	           @Override
 	           public ObservableValue<String> call(CellDataFeatures<Person, String> param) {
@@ -229,7 +225,7 @@ public class MemberInfo extends GridPane implements Info{
 			//System.out.println(this.certChuHo);
 			Alert alert = new Alert(AlertType.INFORMATION);
 	        alert.setTitle("Notification!");
-	        alert.setContentText("Chu ho phai la nguoi dau tien duoc liet ke trong danh sach.");
+	        alert.setContentText("Chủ hộ phải là người đầu tiên trong danh sách");
 	        alert.showAndWait();
 	        
 	        try {
@@ -250,7 +246,7 @@ public class MemberInfo extends GridPane implements Info{
 				if (p.getFullName() == null || p.getCert() == null || p.getMonth() == null || p.getDay() == null || p.getYear() == null || p.getGender() == null) {
 					Alert alert = new Alert(AlertType.INFORMATION);
 			        alert.setTitle("Notification!");
-			        alert.setContentText("Hay dien day du cac thong tin truoc khi luu!");
+			        alert.setContentText("Hãy điền đầy đủ thông tin trước khi lưu!");
 			        alert.showAndWait();
 			        
 			        return;
@@ -272,12 +268,12 @@ public class MemberInfo extends GridPane implements Info{
 					saveInDB.getPreStatement().setBoolean(5, p.getGender());
 					saveInDB.getPreStatement().executeUpdate();
 				}
-				
+				this.success = true;
 				saveInDB.closeState();
 			} catch (SQLException e) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 		        alert.setTitle("Error!");
-		        alert.setContentText("Khong the thuc hien yeu cau!");
+		        alert.setContentText("Không thể thực hiện yêu cầu!");
 		        alert.showAndWait();
 		        //e.printStackTrace();
 		        return;
