@@ -80,7 +80,7 @@ public class Main_GUI extends Application{
 		this.wrong.setMaxSize(420, 200);
 		setLoginPane();
 		this.login_btn.setOnAction(e -> {
-			if (username.getText() != null && username.getText().equals("NMCNPM") && password.getText() != null && password.getText().equals("Nhom17"))
+			if (username.getText() != null && username.getText().equals("NMCNPM") && password.getText() != null && password.getText().equals("Nhom15"))
 				{
 					primaryStage.setScene(scene);
 				}
