@@ -1,7 +1,7 @@
-# NMCNPM_Nhom17
+# NMCNPM_Nhom15
 Bài tập lớn môn học: Nhập Môn Công Nghệ Phần Mềm
 GVHD: TS. Nguyễn Nhất Hải
-Nhóm SV thực hiện: Nhóm 17
+Nhóm SV thực hiện: Nhóm 15
 
 ## Tổng quan
 Vấn đề: xây dựng phần mềm quản lý các thông tin về tình hình dịch Covid 19 để giúp cán bộ y tế trong tổ dân phố theo dõi được diễn biến dịch bệnh.
