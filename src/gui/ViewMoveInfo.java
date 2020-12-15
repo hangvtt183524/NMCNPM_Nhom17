@@ -81,7 +81,7 @@ public class ViewMoveInfo extends GridPane{
 		Movement move;
 		RecordInformation getInfo = new RecordInformation();
 		try {
-			getInfo.query_change("select nk.ho_va_ten, hk.dia_chi, dc.ngay_di from quan_ly_di_chuyen as dc join thong_tin_nhan_khau as nk on dc.cccd = nk.cccd join thong_tin_ho_khau as hk on nk.id_ho_khau = hk.id_ho_khau where dc.vung_dich_di_qua like ? and datediff('d', dc.ngay_di, date()) <= 28;");
+			getInfo.query_change("select nk.ho_va_ten, hk.dia_chi, dc.ngay_di from quan_ly_di_chuyen as dc join thong_tin_nhan_khau as nk on dc.cccd = nk.cccd join thong_tin_ho_khau as hk on nk.id_ho_khau = hk.id_ho_khau where dc.vung_dich_di_qua like ? and datediff('d', dc.ngay_di, date()) <= 31;");
 			getInfo.getPreStatement().setString(1, "%"+ this.noiden + "%");
 			
 			ResultSet rs = getInfo.getPreStatement().executeQuery();

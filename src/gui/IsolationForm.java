@@ -2,10 +2,12 @@ package gui;
 
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
@@ -123,7 +125,7 @@ public class IsolationForm extends FormFunction{
 			   @Override 
 			   public void handle(MouseEvent e) {
 				   if (singleInfo.getTiepxuc()) {
-					   if (contactInfo.checkValid()) {
+					   if (contactInfo != null && contactInfo.checkValid()) {
 						   singleInfo.saveInfo("");
 						   if (singleInfo.getSuccess() && singleInfo.getTiepxuc()) {
 							   contactInfo.saveInfo(singleInfo.getCCCD());
@@ -132,6 +134,13 @@ public class IsolationForm extends FormFunction{
 								   addBtn.setDisable(false);
 							   }
 						   }
+					   }
+					   else if (contactInfo == null) {
+						    Alert alert = new Alert(AlertType.INFORMATION);
+					        alert.setTitle("Error!");
+							alert.setContentText("Hãy khai báo các trường hợp tiếp xúc gần!");
+							alert.showAndWait();
+							return;
 					   }
 				   }
 				   else {

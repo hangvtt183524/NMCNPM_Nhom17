@@ -239,7 +239,7 @@ public class ViewIsolateInfo extends GridPane implements Info{
 		RecordInformation getInfo = new RecordInformation();
 		
 		try {
-			getInfo.query_change("select nk.ho_va_ten, nk.cccd, cl.muc_do, cl.dia_diem, cl.ngay_bat_dau, cl.da_xet_nghiem, cl.da_het_han from quan_ly_cach_ly as cl join thong_tin_nhan_khau as nk on cl.cccd = nk.cccd where datediff('d', cl.ngay_bat_dau, Date()) <=28 or cl.da_het_han = False;");
+			getInfo.query_change("select nk.ho_va_ten, nk.cccd, cl.muc_do, cl.dia_diem, cl.ngay_bat_dau, cl.da_xet_nghiem, cl.da_het_han from quan_ly_cach_ly as cl join thong_tin_nhan_khau as nk on cl.cccd = nk.cccd where datediff('d', cl.ngay_bat_dau, Date()) <=31 or cl.da_het_han = False;");
 			//getInfo.query_change("select * from quan_ly_cach_ly;");
 			ResultSet rs = getInfo.getPreStatement().executeQuery();
 			

@@ -2,6 +2,9 @@ package gui;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import controller.RecordInformation;
@@ -195,6 +198,9 @@ public class TestInfo extends GridPane implements Info{
 	        alert.showAndWait();
 	        e.printStackTrace();
 	        return;
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 	}

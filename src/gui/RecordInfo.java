@@ -267,7 +267,7 @@ public class RecordInfo extends GridPane implements Info{
 		Result res;
 		RecordInformation getInfo = new RecordInformation();
 		try {
-			getInfo.query_change("select nk.cccd, nk.ho_va_ten, kt.lan_thu, kt.thoi_gian, kt.hinh_thuc, kt.ket_qua from quan_ly_kiem_tra as kt join thong_tin_nhan_khau as nk on kt.cccd = nk.cccd where datediff('d', kt.thoi_gian, Date()) <=7;");
+			getInfo.query_change("select nk.cccd, nk.ho_va_ten, kt.lan_thu, kt.thoi_gian, kt.hinh_thuc, kt.ket_qua from quan_ly_kiem_tra as kt join thong_tin_nhan_khau as nk on kt.cccd = nk.cccd where datediff('d', kt.thoi_gian, Date()) <=31;");
 			
 			ResultSet rs = getInfo.getPreStatement().executeQuery();
 			

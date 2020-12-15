@@ -60,6 +60,7 @@ public class Result {
 
 	public void setUpdate() {
 		this.update = new Button("Update");
+		setUpdateButtonEventHandle();
 	}
 
 	public String getTime() {

@@ -165,6 +165,7 @@ public class ViewForm extends FormFunction{
 						if (viewMove != null)
 							removeComponent(viewMove);
 						getViewIsolation();
+						removeComponent(saveBtn);
 						setUpdateButton();
 				   }
 					else {
