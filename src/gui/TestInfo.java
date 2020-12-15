@@ -2,7 +2,7 @@ package gui;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
+import java.util.Date;
 
 import controller.RecordInformation;
 import javafx.geometry.Pos;
@@ -151,7 +151,10 @@ public class TestInfo extends GridPane implements Info{
 				else {
 					saveInfo.query_change("insert into quan_ly_kiem_tra (cccd, thoi_gian, hinh_thuc, ket_qua, lan_thu) values (?, ?, ?, ?, ?);");
 					saveInfo.getPreStatement().setString(1, this.cert.getText());
-					saveInfo.getPreStatement().setDate(2, new Date(this.time.getValue().getMonthValue(), this.time.getValue().getDayOfMonth(), this.time.getValue().getYear()));
+					//saveInfo.getPreStatement().setDate(2, new Date(this.time.getValue().getMonthValue(), this.time.getValue().getDayOfMonth(), this.time.getValue().getYear()));
+				SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+				Date date = df.parse(this.time.getValue().getMonthValue()+"/"+this.time.getValue().getDayOfMonth() + "/" + this.time.getValue().getYear());
+					saveInfo.getPreStatement().setTimestamp(2,new Timestamp(date.getTime()));
 					if (this.method1.isSelected()) saveInfo.getPreStatement().setString(3, "Test Nhanh");
 					else saveInfo.getPreStatement().setString(3, "PCR");
 					
@@ -167,7 +170,10 @@ public class TestInfo extends GridPane implements Info{
 			else {
 				saveInfo.query_change("insert into quan_ly_kiem_tra (cccd, thoi_gian, hinh_thuc, ket_qua, lan_thu) values (?, ?, ?, ?, ?);");
 				saveInfo.getPreStatement().setString(1, this.cert.getText());
-				saveInfo.getPreStatement().setDate(2, new Date(this.time.getValue().getMonthValue(), this.time.getValue().getDayOfMonth(), this.time.getValue().getYear()));
+				//saveInfo.getPreStatement().setDate(2, new Date(this.time.getValue().getMonthValue(), this.time.getValue().getDayOfMonth(), this.time.getValue().getYear()));
+				SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+				Date date = df.parse(this.time.getValue().getMonthValue()+"/"+this.time.getValue().getDayOfMonth() + "/" + this.time.getValue().getYear());
+				saveInfo.getPreStatement().setTimestamp(2,new Timestamp(date.getTime()));
 				if (this.method1.isSelected()) saveInfo.getPreStatement().setString(3, "Test Nhanh");
 				else saveInfo.getPreStatement().setString(3, "PCR");
 				
